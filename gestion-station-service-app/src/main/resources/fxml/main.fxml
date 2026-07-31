@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="600.0" prefWidth="900.0"
+	xmlns="http://javafx.com/javafx/21"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="com.stationservice.Controller.MainController">
+
+	<!-- Menu laterat gauche -->
+	<left>
+		<VBox prefWidth="200.0" spacing="15.0" style="-fx-background-color: #6A89A7; -fx-padding:20;">
+			<children>
+				<Label text="Station Essence" style="-fx-text-fill: white; -fx-font-size: 16px;"/>
+				<Button fx:id="btnDashboard" maxWidth="1.7976931348623157E308" text="Tableau de Bord" onAction="#handleDashboard"/>
+				<Button fx:id="btnProduits" maxWidth="1.7976931348623157E308" text="Produits &amp; Stock" onAction="#handleProduits" />
+				<Button fx:id="btnEntretien" maxWidth="1.7976931348623157E308" text="Entretiens &amp; recus" onAction="#handleEntretiens" />
+			</children>
+		</VBox>
+	</left>
+	
+	<center>
+		<VBox fx:id="contentArea" alignment="CENTER" spacing="20.0">
+			<children>
+				<Label text="Bienvenue dans l'application de Gestion de Station Essence" style="-fx-font-size:18px;"/>
+			</children>
+		</VBox>
+	</center>
+</BorderPane>

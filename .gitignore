@@ -21,3 +21,14 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
+/.metadata/
+
+
+# Eclipse
+**/ .classpath
+**/ .project
+**/ .settings/
+**/ .factorypath
+
+# Maven build output
+**/ target/
