@@ -1,10 +1,13 @@
 package com.stationservice.Models;
+// com.stationservice.Models.Produit;
 
 public class Produit {
 	private String num_prod;
 	private String design;
 	private int stock;
 	private int prix_litre_prod;
+        
+        public Produit(){}
 	
 	public Produit(String num_prod, String design, int stock, int prix_litre_prod) {
 		this.num_prod = num_prod;
@@ -44,6 +47,11 @@ public class Produit {
 	public void setPrix_litre_prod(int prix_litre_prod) {
 		this.prix_litre_prod = prix_litre_prod;
 	};
+        
+        @Override
+        public String toString() {
+            return design + " (" + prix_litre_prod + " €)";
+        }
 }
 
 

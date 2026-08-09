@@ -1,0 +1,111 @@
+/*.fenetre_base {
+    -fx-background-color: #FFFFFF;    
+}
+
+.pane_en_tete {
+    -fx-background-color: #F7F7F7;
+}
+
+.pane_corps {
+    -fx-background-color: #F7F7F7;
+    -fx-border-radius: 10px;
+}
+
+.label_page {
+    -fx-font-weight: 500;
+}*/
+
+/* =========================================================
+   PALETTE
+   ========================================================= */
+
+.root {
+    -fx-primary-color: #22754C;
+    -fx-dark-green: #185135;
+    -fx-light-green: #56B98B;
+    -fx-background-color: #F7F7F7;
+}
+
+
+/* =========================================================
+   FENETRE PRINCIPALE
+   ========================================================= */
+
+.fenetre_base {
+    -fx-background-color: #F7F7F7;
+    -fx-top: 0;
+    -fx-bottom: 0;
+    -fx-right: 0;
+}
+
+
+/* =========================================================
+   EN-TETE
+   ========================================================= */
+
+.pane_en_tete {
+    -fx-background-color: #FFFFFF;
+
+    -fx-border-color: #E1E3E4;
+    -fx-border-width: 0 0 1 0;
+}
+
+
+/* =========================================================
+   CORPS
+   ========================================================= */
+
+.pane_corps {
+    -fx-background-color: #FFFFFF;
+
+    -fx-background-radius: 14px;
+    -fx-border-radius: 14px;
+
+    -fx-border-color: #E1E3E4;
+    -fx-border-width: 1px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0, 0, 0, 0.08),
+        12,
+        0.15,
+        0,
+        3
+    );
+}
+
+
+/* =========================================================
+   TITRE DE PAGE
+   ========================================================= */
+
+.label_page {
+    -fx-text-fill: #111111;
+
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+}
+
+.hbox_stat  {
+    -fx-background-color: grey;
+    -fx-spacing: 15;
+}
+
+.pane_stat {
+    -fx-background-color: #FFF; 
+}
+
+.pane_stat_label {
+    -fx-font-size: 16px;
+    -fx-font-weight: 500;
+}
+
+.hbox_affichage_donne {
+    -fx-spacing: 15;
+    -fx-border-radius: 20; 
+}
+
+.pane_affichage_donne {
+    -fx-background-color: #E1E3E4; 
+}

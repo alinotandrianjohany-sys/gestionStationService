@@ -1,27 +1,32 @@
 package com.stationservice.Controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.VBox;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
+import java.io.IOException;
+
 
 
 public class MainController {
-	@FXML
-    private VBox contentArea;
-
+    @FXML
+    private AnchorPane contentArea;
+        
     @FXML
     public void initialize() {
         // Code exécuté automatiquement au chargement de la vue
+        loadView("/fxml/dashboard.fxml");
     }
 
     @FXML
     private void handleDashboard() {
-        System.out.println("Clic sur Tableau de bord");
+        loadView("/fxml/dashboard.fxml");
         // Plus tard : charger dashboard.fxml dans contentArea
     }
 
     @FXML
     private void handleProduits() {
-        System.out.println("Clic sur Produits");
+        loadView("/fxml/dossierProduit/produit.fxml");
         // Plus tard : charger produits.fxml dans contentArea
     }
 
@@ -29,5 +34,23 @@ public class MainController {
     private void handleEntretiens() {
         System.out.println("Clic sur Entretiens");
         // Plus tard : charger entretiens.fxml dans contentArea
+    }
+    
+    private void loadView(String fxmlPath){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Node view = loader.load();
+            
+            AnchorPane.setTopAnchor(view, 0.0);
+            AnchorPane.setBottomAnchor(view, 0.0);
+            AnchorPane.setLeftAnchor(view, 0.0);
+            AnchorPane.setRightAnchor(view, 0.0);
+            //remplacement du contenue centrale par une ue
+            contentArea.getChildren().setAll(view);
+        } catch (IOException e){
+            
+               System.err.println("Erreur lors du charegement de vue");
+               e.printStackTrace();
+        }
     }
 }

@@ -12,11 +12,18 @@ import javafx.stage.Stage;
 import java.lang.RuntimeException;
 import java.net.URL;
 
+import com.stationservice.Models.Produit;
+import com.stationservice.dao.ProduitDao;
+import com.stationservice.config.DatabaseConfig;
+
+import java.util.List;
+
+
 public class App extends Application{
 	
-	private final String WINDOW_TITLE = "SiteWeb";
-	private final int WINDOW_HEIGHT = 642;
-	private final int WINDOW_WIDTH = 480;
+	/*private final String WINDOW_TITLE = "SiteWeb";
+	\\private final int WINDOW_HEIGHT = 642;
+	rivate final int WINDOW_WIDTH = 480;*/
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -32,12 +39,16 @@ public class App extends Application{
 		
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Station Essence - Gestion");
+                
 		primaryStage.show();
 		
 	}
 	
 	public static void main(String[] args) {
 		launch(args);
+                ProduitDao produitDao = DatabaseConfig.getDao(ProduitDao.class);
+                List<Produit> produits = produitDao.findAll();
+                System.out.println("Nombre de produits en base : " + produits.size());
 	}
 }
 

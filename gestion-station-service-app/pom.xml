@@ -33,10 +33,39 @@
     </dependency>
 
     <!-- Driver PostgreSQL -->
+    <!-- Driver JDBC PostgreSQL-->
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <version>42.7.2</version>
+    </dependency>
+    
+    <!--jdbi 3 core _ gestion de connection -->
+    <dependency>
+      <groupId>org.jdbi</groupId>
+      <artifactId>jdbi3-core</artifactId>
+      <version>3.45.1</version>
+    </dependency>
+    
+    <!-- Jdbi 3 SqlObject (Pour utiliser les DAO avec annotations @SqlQuery, @SqlUpdate)-->
+    <dependency>
+    	<groupId>org.jdbi</groupId>
+    	<artifactId>jdbi3-sqlobject</artifactId>
+    	<version>3.45.1</version>
+    </dependency>
+    
+    <!-- Jdbi 3 Postgres Plugin (Support des types spécifiques à Postgres si besoin) -->
+    <dependency>
+      <groupId>org.jdbi</groupId>
+      <artifactId>jdbi3-postgres</artifactId>
+      <version>3.45.1</version>
+    </dependency>
+    
+    <!--suppression d'L'avertissement SLF4J (Journaux d'événements)-->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>2.0.12</version>
     </dependency>
   </dependencies>
 
