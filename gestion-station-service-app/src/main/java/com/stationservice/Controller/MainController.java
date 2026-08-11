@@ -32,8 +32,7 @@ public class MainController {
 
     @FXML
     private void handleEntretiens() {
-        System.out.println("Clic sur Entretiens");
-        // Plus tard : charger entretiens.fxml dans contentArea
+        loadView("/fxml/dossierAchat/achat.fxml");
     }
     
     private void loadView(String fxmlPath){

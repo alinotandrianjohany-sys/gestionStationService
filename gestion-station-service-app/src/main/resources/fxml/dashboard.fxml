@@ -4,54 +4,69 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="fenetre_base" prefHeight="593.0" prefWidth="675.0" styleClass="fenetre_base" stylesheets="@../styles/styleDashboard.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="fenetre_base" prefHeight="593.0" prefWidth="675.0" styleClass="fenetre_base" stylesheets="@../styles/styleDashboard.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stationservice.Controller.DashboardController">
 
     <children>
-
-                    <Pane fx:id="pane_en_tete" prefHeight="53.0" styleClass="pane_en_tete" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0" />
+        <Pane fx:id="pane_en_tete" prefHeight="53.0" styleClass="pane_en_tete" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0" />
 
         <Pane fx:id="pane_corps" styleClass="pane_corps" stylesheets="@../styles/styleDashboard.css" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="61.0">
-
             <children>
-
-               <Label fx:id="label_page" layoutX="12.0" layoutY="24.0" styleClass="label_page" text="Dashboard">
+                <Label fx:id="label_page" layoutX="12.0" layoutY="24.0" styleClass="label_page" text="Dashboard">
                     <font>
-                       <Font size="6.0" />
+                        <Font size="6.0" />
                     </font>
-               </Label>
-            <Text layoutX="12.0" layoutY="65.0" opacity="0.48" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous ne viendrez plus chez nous par hasard " />
-            <HBox fx:id="hbox_stat" layoutX="12.0" layoutY="93.0" prefHeight="139.0" prefWidth="644.0" styleClass="hbox_stat" stylesheets="@../styles/styleDashboard.css">
-               <children>
-                  <Pane fx:id="pane_stat_1" prefHeight="139.0" prefWidth="163.0" styleClass="pane_stat" stylesheets="@../styles/styleDashboard.css">
-                     <children>
-                        <Label layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="130.0" styleClass="pane_stat_label" text="Chiffre d'affaire" />
-                     </children>
-                  </Pane>
-                  <Pane prefHeight="0.0" prefWidth="451.0" />
-               </children>
-            </HBox>
-            <HBox fx:id="hbox_affichage_donne" layoutX="13.0" layoutY="253.0" prefHeight="261.0" prefWidth="644.0" styleClass="hbox_affichage_donne" stylesheets="@../styles/styleDashboard.css">
-               <children>
-                  <Pane prefHeight="261.0" prefWidth="321.0" styleClass="pane_affichage_donne" stylesheets="@../styles/styleDashboard.css">
-                     <children>
-                        <Label layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="213.0" styleClass="pane_stat_label" text="Recette des 5 derniers mois" />
-                     </children>
-                  </Pane>
-                  <Pane prefHeight="261.0" prefWidth="325.0" styleClass="pane_affichage_donne">
-                     <children>
-                        <Label layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="213.0" styleClass="pane_stat_label" text="Les 5 meilleur.e.s Clients " />
-                     </children>
-                  </Pane>
-               </children>
-            </HBox>
+                </Label>
+                <Text layoutX="12.0" layoutY="65.0" opacity="0.48" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous ne viendrez plus chez nous par hasard " />
 
+                <!-- SECTION HAUTE : Les 3 indicateurs principaux -->
+                <HBox fx:id="hbox_stat" layoutX="12.0" layoutY="85.0" prefHeight="130.0" prefWidth="644.0" spacing="15.0">
+                    <children>
+                        <!-- Carte 1 : Chiffre d'affaires -->
+                        <VBox prefHeight="130.0" prefWidth="204.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 8px; -fx-padding: 15px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="pane_stat_label" text="Chiffre d'affaire" />
+                                <Label fx:id="labelChiffreAffaires" text="0 Ar" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                            </children>
+                        </VBox>
+
+                        <!-- Carte 2 : Ventes -->
+                        <VBox prefHeight="130.0" prefWidth="204.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 8px; -fx-padding: 15px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="pane_stat_label" text="Ventes réalisées" />
+                                <Label fx:id="labelNombreAchats" text="0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                            </children>
+                        </VBox>
+
+                        <!-- Carte 3 : Stock Faible -->
+                        <VBox prefHeight="130.0" prefWidth="204.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 8px; -fx-padding: 15px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="pane_stat_label" text="Stock faible" />
+                                <Label fx:id="labelStockFaible" text="0" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- SECTION BASSE : Recettes et Meilleurs Clients -->
+                <HBox fx:id="hbox_affichage_donne" layoutX="12.0" layoutY="230.0" prefHeight="280.0" prefWidth="644.0" spacing="15.0" styleClass="hbox_affichage_donne" stylesheets="@../styles/styleDashboard.css">
+                    <children>
+                        <Pane prefHeight="280.0" prefWidth="314.0" styleClass="pane_affichage_donne" stylesheets="@../styles/styleDashboard.css" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="213.0" styleClass="pane_stat_label" text="Recette des 5 derniers mois" />
+                            </children>
+                        </Pane>
+                        <Pane prefHeight="280.0" prefWidth="314.0" styleClass="pane_affichage_donne" stylesheets="@../styles/styleDashboard.css" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="213.0" styleClass="pane_stat_label" text="Les 5 meilleur.e.s Clients " />
+                            </children>
+                        </Pane>
+                    </children>
+                </HBox>
             </children>
-
         </Pane>
-
     </children>
-
 </AnchorPane>
