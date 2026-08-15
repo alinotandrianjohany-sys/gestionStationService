@@ -1,15 +1,16 @@
 package com.stationservice.Models;
 // com.stationservice.Models.Produit;
 
+
 public class Produit {
 	private String num_prod;
 	private String design;
-	private int stock;
+	private Double stock;
 	private int prix_litre_prod;
         
         public Produit(){}
 	
-	public Produit(String num_prod, String design, int stock, int prix_litre_prod) {
+	public Produit(String num_prod, String design, Double stock, int prix_litre_prod) {
 		this.num_prod = num_prod;
 		this.design = design;
 		this.stock = stock;
@@ -32,11 +33,11 @@ public class Produit {
 		this.design = design;
 	}
 
-	public int getStock() {
+	public Double getStock() {
 		return stock;
 	}
 
-	public void setStock(int stock) {
+	public void setStock(Double stock) {
 		this.stock = stock;
 	}
 

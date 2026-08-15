@@ -33,6 +33,7 @@ public class MainController {
     @FXML
     private void handleEntretiens() {
         loadView("/fxml/dossierAchat/achat.fxml");
+        // Plus tard : charger entretiens.fxml dans contentArea
     }
     
     private void loadView(String fxmlPath){

@@ -192,8 +192,5 @@ public class ProduitController {
             System.err.println("Erreur lors de l'ouverture de la fenêtre d'ajout : " + e.getMessage());
             e.printStackTrace();
         }
-    
     }
-    
-    
 }

@@ -20,6 +20,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import org.postgresql.util.PSQLException;
+import org.jdbi.v3.core.JdbiException;
+
 /**
  *
  * @author DELL
@@ -77,7 +80,7 @@ public class AjoutProduitController {
             return;
         }
         
-        int Quantite = Integer.parseInt(txtNombreLitre.getText());
+        Double Quantite = Double.parseDouble(txtNombreLitre.getText());
         if (Quantite < 0){
             afficherMessage("Le nombre de litre doit etre positif ");
             return;
@@ -88,9 +91,23 @@ public class AjoutProduitController {
         
         
         //ajout dans la classe roduit puis saise dans la base de donnee
-        Produit newProd = new Produit(creerNumProduit(nom),nom ,Quantite,Prix);
-        ProduitDao produitDao = DatabaseConfig.getDao(ProduitDao.class);
-        boolean estAjoute =produitDao.insert(newProd);
+        boolean estAjoute = false;
+        
+        try {
+            Produit newProd = new Produit(creerNumProduit(nom),nom ,Quantite,Prix);
+            ProduitDao produitDao = DatabaseConfig.getDao(ProduitDao.class);
+            estAjoute = produitDao.insert(newProd);
+            
+        } catch (JdbiException e) {
+            if (e.getCause() instanceof PSQLException psqlException) {
+                
+                // Code SQLState 23505 = Violation de contrainte UNIQUE
+                if ("23505".equals(psqlException.getSQLState())) {
+                    afficherMessage("Erreur de doublon : Le produit existe déjà !");
+                    return;
+                }
+            }
+        }
         
         if (estAjoute) {
             txtMessage.setText("Produit ajouté avec succès !");
