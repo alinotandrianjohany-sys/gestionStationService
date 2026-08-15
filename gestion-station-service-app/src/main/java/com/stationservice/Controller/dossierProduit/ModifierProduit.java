@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import com.stationservice.dao.ProduitDao;
 import com.stationservice.Models.Produit;
 import com.stationservice.config.DatabaseConfig;
+import org.jdbi.v3.core.JdbiException;
+import org.postgresql.util.PSQLException;
 
 /**
  *
@@ -73,14 +75,30 @@ public class ModifierProduit {
         }
         
         //le nombre de litre 
-       
+        
         //apres que les valeur sont actuellement sur 
         String nom = txtNom.getText();
         ProduitAModifier.setDesign(nom);
         ProduitAModifier.setPrix_litre_prod(Prix);
         
         //ajout dans la base de donne
-        Boolean estModifier = DAOProduit.update(ProduitAModifier);
+        Boolean estModifier = false;
+        
+        try {
+            
+            estModifier = DAOProduit.update(ProduitAModifier);
+            
+        } catch (JdbiException e) {
+            if (e.getCause() instanceof PSQLException psqlException) {
+                
+                // Code SQLState 23505 = Violation de contrainte UNIQUE
+                if ("23505".equals(psqlException.getSQLState())) {
+                    afficherMessage("Erreur de doublon : Le produit existe déjà !");
+                    return;
+                }
+            }
+        }
+        
         if (estModifier){
             Stage stage = (Stage) BtnEnregistrer.getScene().getWindow();
             supprimerChamps();

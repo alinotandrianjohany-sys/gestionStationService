@@ -1,14 +1,16 @@
 package com.stationservice.Models;
+//com.stationservice.Models.Achat;
+
 import java.time.LocalDateTime;
 public class Achat {
 	private String num_achat;
 	private String num_prod;
 	private String nom_client;
-	private int nbr_litre;
+	private Double nbr_litre;
 	private int montant_paye_achat;
 	private LocalDateTime date_achat;
 	
-	public Achat(String num_achat, String num_prod, String nom_client,int nbr_litre, int montant_paye_achat) {
+	public Achat(String num_achat, String num_prod, String nom_client,Double nbr_litre, int montant_paye_achat) {
 		this.num_achat = num_achat;
 		this.num_prod = num_prod;
 		this.nom_client = nom_client;
@@ -41,11 +43,11 @@ public class Achat {
 		this.nom_client = nom_client;
 	}
 
-	public int getNbr_litre() {
+	public Double getNbr_litre() {
 		return nbr_litre;
 	}
 
-	public void setNbr_litre(int nbr_litre) {
+	public void setNbr_litre(Double nbr_litre) {
 		this.nbr_litre = nbr_litre;
 	}
 

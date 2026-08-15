@@ -32,7 +32,7 @@ public interface ProduitDao {
     List<Produit> findAll();
     
     @SqlQuery("SELECT * FROM produit WHERE num_prod = :num_prod")
-    Optional<Produit> findById(@Bind("num_prod") int num_prod);
+    Optional<Produit> findById(@Bind("num_prod") String num_prod);
     
     //delete 
     @SqlUpdate("DELETE FROM produit WHERE num_prod = :num_prod")
