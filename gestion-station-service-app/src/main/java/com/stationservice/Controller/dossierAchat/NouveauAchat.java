@@ -47,8 +47,8 @@ public class NouveauAchat {
     private AchatDao achatDao = DatabaseConfig.getDao(AchatDao.class);
     
     public void initialize(){
-        ComboTypeAchat.getItems().addAll("Litre","Ariary");
-        ComboTypeAchat.setValue("Vola");
+        ComboTypeAchat.getItems().addAll("Ariary");
+        ComboTypeAchat.setValue("Litre");
     }
     
     @FXML
@@ -162,13 +162,13 @@ public class NouveauAchat {
                 afficherMessage("Quantite est vide");
                 return;
             }
-            
-            if (txtChoix.getText().matches(regexNombre)){
+            String saisie = txtChoix.getText().trim();
+            if (saisie.matches(regexNombre)){
                 afficherMessage("Veillez saisir un nombre");
                 return;
             }
             
-            Double Quantite = Double.parseDouble(txtChoix.getText());
+            Double Quantite = Double.parseDouble(saisie.replace("," , "."));
             if (Quantite <= 0){
                 afficherMessage("La quantite doit etre superieur à 0 ");
                 return;

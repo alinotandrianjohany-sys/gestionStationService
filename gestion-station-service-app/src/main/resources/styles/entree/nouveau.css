@@ -1,0 +1,84 @@
+/* Arrière-plan de la vue */
+.root {
+    -fx-background-color: #F7F7F7;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Carte / Formulaire principal */
+.form-card {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E1E3E4;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(three-pass-box, rgba(5, 19, 7, 0.1), 10, 0, 0, 4);
+}
+
+/* En-tête et Titres */
+.title-header {
+    -fx-text-fill: #185135;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.date-label {
+    -fx-text-fill: #595F5A;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.field-label {
+    -fx-text-fill: #185135;
+    -fx-font-weight: bold;
+}
+
+/* Champs de texte & ComboBox */
+.text-field, .combo-box {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E1E3E4;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 6px;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused, .combo-box:focused {
+    -fx-border-color: #22754C;
+    -fx-border-width: 2px;
+}
+
+/* Champ en lecture seule (Numéro d'entrée) */
+.read-only-field {
+    -fx-background-color: #E1E3E4;
+    -fx-text-fill: #595F5A;
+    -fx-font-weight: bold;
+}
+
+/* Style d'erreur si la Regex échoue */
+.text-field-error {
+    -fx-border-color: #D76B36 !important;
+    -fx-border-width: 2px !important;
+}
+
+.error-label {
+    -fx-text-fill: #D76B36;
+    -fx-font-size: 12px;
+}
+
+/* Bouton principal (Vert) */
+.btn-primary {
+    -fx-background-color: #22754C;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #185135;
+}
+
+.btn-primary:pressed {
+    -fx-background-color: #0C3313;
+}

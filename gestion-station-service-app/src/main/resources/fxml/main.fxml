@@ -16,6 +16,7 @@
 				<Button fx:id="btnDashboard" maxWidth="1.7976931348623157E308" onAction="#handleDashboard" text="Tableau de Bord" />
 				<Button fx:id="btnProduits" maxWidth="1.7976931348623157E308" onAction="#handleProduits" text="Produits &amp; Stock" />
 				<Button fx:id="btnEntretien" maxWidth="1.7976931348623157E308" onAction="#handleEntretiens" text="Achat" />
+                                <Button fx:id="btnEntree" maxWidth="1.7976931348623157E308" onAction="#handleEntrees" text="Entree" />
 			</children>
 		</VBox>
 	</left>

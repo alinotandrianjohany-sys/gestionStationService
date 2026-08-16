@@ -13,6 +13,11 @@ public class Entree {
 		this.stock_entree = stock_entree;
 		this.date_entree = LocalDateTime.now();				
 	}
+        
+        // Constructeur sans argument (nécessaire pour JDBI/Jackson/Frameworks)
+        public Entree() {
+        }
+        
 
 	public String getNum_entr() {
 		return num_entr;

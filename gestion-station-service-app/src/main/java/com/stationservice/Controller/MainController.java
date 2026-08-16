@@ -36,6 +36,12 @@ public class MainController {
         // Plus tard : charger entretiens.fxml dans contentArea
     }
     
+    @FXML
+    private void handleEntrees(){
+        loadView("/fxml/dossierEntree/entree.fxml");
+    }
+
+    
     private void loadView(String fxmlPath){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));

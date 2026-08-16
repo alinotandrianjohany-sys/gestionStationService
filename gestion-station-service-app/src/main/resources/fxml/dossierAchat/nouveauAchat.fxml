@@ -36,7 +36,7 @@ reo amin'izay sa tsy zany :)>-->
                 <Label prefHeight="17.0" prefWidth="224.0" text="Quantite (en litre)/ Montant (en Ariary)" />
             <HBox prefHeight="61.0" prefWidth="360.0">
                <children>
-                      <TextField fx:id="txtNombreLitre" prefHeight="25.0" prefWidth="355.0" />
+                      <TextField fx:id="txtChoix" prefHeight="25.0" prefWidth="355.0" />
                   <ComboBox fx:id="ComboTypeAchat" prefWidth="150.0" />
                </children>
             </HBox>
