@@ -45,6 +45,7 @@
           <TableColumn fx:id="colNumProd" prefWidth="200.0" text="N° Produit" />
             <TableColumn fx:id="colStockEntree" prefWidth="200.0" text="Quantité Entrée (L)" />
             <TableColumn fx:id="colDateEntree" prefWidth="280.0" text="Date &amp; Heure" />
+            <TableColumn fx:id="colActions" text="Actions" prefWidth="150.0" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

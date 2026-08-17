@@ -18,7 +18,7 @@ reo amin'izay sa tsy zany :)>-->
     </padding>
     
     <children>
-        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Ajouter du Produit" />
+        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Acheter un Produit" />
         
         <VBox>
             <Label text="Numero du Produi :" />

@@ -54,10 +54,11 @@
                                           <Label styleClass="label-section" text="Achats effectués" />
                                           <TableView fx:id="tableAchats" prefHeight="250.0" prefWidth="425.0">
                                             <columns>
-                                              <TableColumn fx:id="colIdAchat" prefWidth="65.0" text="ID" />
-                                              <TableColumn fx:id="colProduit" prefWidth="180.0" text="Produit" />
-                                              <TableColumn fx:id="colQuantite" prefWidth="80.0" text="Quantité" />
-                                              <TableColumn fx:id="colTotal" prefWidth="100.0" text="Total" />
+                                                <TableColumn fx:id="num_achat" prefWidth="65.0" text="ID" />
+                                                <TableColumn fx:id="num_prod" prefWidth="180.0" text="Produit" />
+                                                <TableColumn fx:id="nbr_litre" prefWidth="80.0" text="Litres" />
+                                                <TableColumn fx:id="montant_paye_achat" prefWidth="100.0" text="Total" />
+                                                <TableColumn fx:id="colAction" prefWidth="100.0" text="Actions" />
                                             </columns>
                                           </TableView>
                                        </children>

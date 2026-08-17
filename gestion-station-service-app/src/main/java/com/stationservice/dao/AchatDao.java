@@ -34,24 +34,10 @@ public interface AchatDao {
     @SqlQuery("SELECT COUNT(*) FROM achat")
     int getNombreAchats();
     
-    //recuperer tout les produit
-    @SqlQuery("SELECT * FROM achat")
-    List<Achat> select();
-    
     //recuperer un unique
     @SqlQuery("SELECT * FROM ACHAT WHERE num_prod = :num_prod")
     Optional<Achat> findById(@Bind("num_prod")  String num_prod);
     
-    /*
-    @SqlUpdate("""
-               UPDATE achat SET 
-               num_prod = :num_prod,
-               nom_client = :nom_client ,
-               nbr_litre = :nbr_litre, 
-               montant_paye_achat = :montant_paye_achat , 
-               date_achat = :date_achat  
-               """)
-    Boolean update(@BindBean Achat achat);*/
     
     @SqlUpdate("""
                UPDATE achat SET 
@@ -69,7 +55,7 @@ public interface AchatDao {
     
     @SqlUpdate("""
                UPDATE produit
-               SET stock = stock - :nbr_litre,
+               SET stock = stock - :nbr_litre
                WHERE num_prod = :num_prod
                """)
     boolean diminuerStockProduit(
@@ -90,5 +76,13 @@ public interface AchatDao {
         }
         return confirmer;
     }
+    
+    //recuperation des valeur pour le tableau
+    @SqlQuery("SELECT a.*, p.design FROM achat a LEFT JOIN produit p ON a.num_prod = p.num_prod")
+    List<Achat> select();   
+    
+    //supprimer achat
+    @SqlUpdate("DELETE FROM achat WHERE num_achat = :num_achat")
+    Boolean delete(@Bind("num_achat") String num_achat);
     
 }

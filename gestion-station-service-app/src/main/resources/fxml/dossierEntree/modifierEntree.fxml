@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="15" 
+      stylesheets="@/styles/entree/nouveau.css" 
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.stationservice.Controller.dossierEntree.ModifierEntreeController">
+   
+   <padding>
+      <Insets top="30" right="30" bottom="30" left="30"/>
+   </padding>
+
+   <VBox styleClass="form-card" maxWidth="450" spacing="20">
+      <padding>
+         <Insets top="25" right="25" bottom="25" left="25"/>
+      </padding>
+
+      <!-- En-tête avec Titre et Date -->
+      <HBox alignment="CENTER_LEFT">
+         <Label text="Modification Entrée" styleClass="title-header"/>
+         <Region HBox.hgrow="ALWAYS" />
+         <Label fx:id="lblDate" styleClass="date-label"/>
+      </HBox>
+
+      <Separator />
+
+      <!-- Formulaire -->
+      <VBox spacing="12">
+         <!-- Numéro d'entrée (Auto-généré, en lecture seule) -->
+         <Label text="Numéro d'entrée :" styleClass="field-label"/>
+         <TextField fx:id="txtNumEntree" editable="false" styleClass="read-only-field"/>
+
+         <!-- Sélection du produit -->
+         <!-- Sélection du produit -->
+        <Label text="Produit / Carburant :" styleClass="field-label"/>
+        <TextField fx:id="lblProduit" editable="false" styleClass="read-only-field"/>
+
+         <!-- Quantité ajoutée -->
+         <Label text="Quantité ajoutée (Litres / Unités) :" styleClass="field-label"/>
+         <TextField fx:id="txtStockEntree" promptText="Ex: 500 ou 125.5"/>
+
+         <!-- Message d'erreur dynamique -->
+         <Label fx:id="lblError" styleClass="error-label" wrapText="true"/>
+      </VBox>
+
+      <!-- Bouton d'action -->
+      <Button text="Valider l'entrée" onAction="#handleValiderEntree" 
+              styleClass="btn-primary" maxWidth="1.7976931348623157E308" prefHeight="40"/>
+   </VBox>
+</VBox>

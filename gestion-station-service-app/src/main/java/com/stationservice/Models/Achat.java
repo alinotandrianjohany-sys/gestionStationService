@@ -5,10 +5,13 @@ import java.time.LocalDateTime;
 public class Achat {
 	private String num_achat;
 	private String num_prod;
+        private String design;
 	private String nom_client;
 	private Double nbr_litre;
 	private int montant_paye_achat;
 	private LocalDateTime date_achat;
+        
+        public Achat(){}
 	
 	public Achat(String num_achat, String num_prod, String nom_client,Double nbr_litre, int montant_paye_achat) {
 		this.num_achat = num_achat;
@@ -26,6 +29,14 @@ public class Achat {
 	public void setNum_achat(String num_achat) {
 		this.num_achat = num_achat;
 	}
+        
+        public String getDesign() {
+            return design;
+        }
+
+        public void setDesign(String design) {
+            this.design = design;
+        }
 
 	public String getNum_prod() {
 		return num_prod;
