@@ -1,0 +1,35 @@
+/* ==========================================================================
+   BOUTONS D'ACTION (Nuance Bleu Acier Doux)
+   ========================================================================== */
+
+/* Action principale (+ Nouvel Entretien) */
+.btn-action {
+    -fx-background-color: #6b8cae; /* La couleur exacte de la sidebar d'origine */
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-padding: 8 16 8 16;
+    -fx-border-width: 0;
+}
+
+.btn-action:hover {
+    -fx-background-color: #587899; /* Légèrement plus soutenu au survol */
+}
+
+/* Action secondaire / Reçu PDF (Variante un peu plus claire) */
+.btn-secondary {
+    -fx-background-color: #829ebf;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-padding: 8 16 8 16;
+    -fx-border-width: 0;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #6b8cae;
+}

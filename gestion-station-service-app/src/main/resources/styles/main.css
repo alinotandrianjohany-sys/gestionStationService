@@ -1,3 +1,54 @@
-.contentArea {
-    -fx-background-color: #FFFFFF;   
+.sidebar {
+    -fx-background-color: #6b8cae;
+}
+
+.sidebar-title {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13px;
+    -fx-padding: 10 15 10 15;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.menu-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+.menu-button-active {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #3b526d;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+}
+/* Style du grand en-tête */
+.header-banner {
+    -fx-background-color: #ffffff;
+    -fx-padding: 30px 25px;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.header-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e293b;
+}
+
+.header-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #64748b;
+    -fx-padding: 5px 0 0 0;
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #334155;
 }
