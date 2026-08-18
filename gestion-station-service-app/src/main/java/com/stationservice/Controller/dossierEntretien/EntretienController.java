@@ -1,4 +1,4 @@
-package com.stationservice.Controller;
+package com.stationservice.Controller.dossierEntretien;
 
 import com.stationservice.Models.Entretien;
 import com.stationservice.Models.Service;
@@ -6,13 +6,17 @@ import com.stationservice.Utilitaires.PdfGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class EntretienController {
@@ -28,7 +32,6 @@ public class EntretienController {
 
     @FXML
     public void initialize() {
-        // Liaison des colonnes aux getters de Entretien.java
         colNumEntr.setCellValueFactory(new PropertyValueFactory<>("numEntretien"));
         colImmatriculation.setCellValueFactory(new PropertyValueFactory<>("immatriculationVoiture"));
         colNomClient.setCellValueFactory(new PropertyValueFactory<>("nomClient"));
@@ -39,7 +42,6 @@ public class EntretienController {
     }
 
     private void chargerDonnees() {
-        // Exemples de test conformes à ton sujet
         Entretien e1 = new Entretien("ENT001", "3333 FE", "RAKOTO Bernard");
         e1.ajouterService(new Service("Lavage", 20000));
         e1.ajouterService(new Service("Gonflage", 2000));
@@ -52,9 +54,26 @@ public class EntretienController {
     }
 
     @FXML
-    private void handleNouveau() {
-        System.out.println("Ouverture du formulaire de création d'entretien");
-        // TODO: Prochaine étape CRUD - Formulaire d'ajout/choix des services
+    private void handleNew() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dossierEntretiens/newEntretien.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("New Entretien");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            NewEntretienController controller = loader.getController();
+            Entretien newEntretien = controller.getNewEntretien();
+
+            if (newEntretien != null) {
+                listeEntretiens.add(newEntretien);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox spacing="15.0" stylesheets="@../../styles/entretien.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stationservice.Controller.EntretienController">
+<VBox spacing="15.0" stylesheets="@../../styles/entretien.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stationservice.Controller.dossierEntretien.EntretienController">
     <padding>
         <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
     </padding>
@@ -20,7 +20,7 @@
             <children>
                 <Label styleClass="section-title" text="Historique des entretiens réalisés" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button onAction="#handleNouveau" styleClass="btn-action" text="+ Nouvel Entretien" />
+                <Button onAction="#handleNew" styleClass="btn-action" text="+ Nouvel Entretien" />
                 <Button onAction="#handleImprimerRecu" styleClass="btn-secondary" text="🖨 Imprimer Reçu (PDF)" />
             </children>
         </HBox>
