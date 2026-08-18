@@ -1,0 +1,164 @@
+/* ==========================================================================
+   STYLE GLOBAL & BANNIÈRE D'EN-TÊTE
+   ========================================================================== */
+
+/* Fond global moderne */
+.root-container {
+    -fx-background-color: #F4F7F6;
+}
+
+/* Bannière avec dégradé vert spécifique */
+.pane_gauche_entete {
+    -fx-background-color: linear-gradient(to right, #3f9b2a 1%, #112b1c 100%);
+    -fx-background-radius: 16px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(17, 43, 28, 0.25), 10, 0, 0, 4);
+}
+
+.label-titre-banner {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.btn-acheter {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #112b1c;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-cursor: hand;
+    -fx-padding: 8px 18px;
+}
+
+.btn-acheter:hover {
+    -fx-background-color: #E8F5E9;
+    -fx-text-fill: #3f9b2a;
+}
+
+/* ==========================================================================
+   TITRES & CONTENEURS
+   ========================================================================== */
+
+.label-section {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1A1A1A;
+}
+
+.card-container {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 16px;
+    -fx-padding: 16px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.04), 8, 0, 0, 2);
+}
+
+/* ScrollPane transparent et propre */
+.scroll-pane-custom {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane-custom > .viewport {
+    -fx-background-color: transparent;
+}
+
+/* ==========================================================================
+   TABLEVIEW MODERNE
+   ========================================================================== */
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #F9FAFB;
+    -fx-background-radius: 8px 8px 0 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 40px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #6B7280;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-alignment: CENTER-LEFT;
+}
+
+.table-row-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent transparent #F3F4F6 transparent;
+    -fx-cell-size: 42px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #FAFAFA;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #F0FDF4;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #DCFCE7;
+    -fx-text-fill: #112b1c;
+}
+
+
+/* ==========================================================================
+   BANNIÈRE EN-TÊTE DYNAMIQUE (25% HAUTEUR ÉCRAN)
+   ========================================================================== */
+
+.pane_gauche_entete {
+    /* 25vh = 25% de la hauteur de la fenêtre */
+    -fx-pref-height: 25vh;
+    -fx-min-height: 140px;
+    
+    /* Dégradé fluide et fond vert */
+    -fx-background-color: linear-gradient(to right, #3f9b2a 0%, #112b1c 100%);
+    -fx-background-radius: 16px;
+    
+    /* Confort visuel : Padding généreux & ombrage doux */
+    -fx-padding: 24px 32px;
+    -fx-effect: dropshadow(three-pass-box, rgba(17, 43, 28, 0.2), 12, 0, 0, 6);
+}
+
+/* Titre principal grand et lisible */
+.label-titre-banner {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+/* Petit sur-titre pour la hiérarchie visuelle */
+.label-sous-titre-banner {
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 1px;
+}
+
+/* Bouton d'action mis en valeur */
+.btn-acheter {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #112b1c;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 24px;
+    -fx-cursor: hand;
+    -fx-padding: 12px 24px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.15), 6, 0, 0, 2);
+}
+
+.btn-acheter:hover {
+    -fx-background-color: #E8F5E9;
+    -fx-text-fill: #3f9b2a;
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}

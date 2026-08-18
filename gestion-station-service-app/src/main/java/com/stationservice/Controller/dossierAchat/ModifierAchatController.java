@@ -29,6 +29,9 @@ import javafx.scene.control.ComboBox;
 
 import org.postgresql.util.PSQLException;
 import org.jdbi.v3.core.JdbiException;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
 
 import java.util.Optional;
 
@@ -56,5 +59,11 @@ public class ModifierAchatController {
     
     public void Btn_effectuerModificationAchat(){
     
+    }
+    
+    @FXML
+    private void handleAnnuler(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 }

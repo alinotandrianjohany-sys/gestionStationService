@@ -1,0 +1,98 @@
+/* ==========================================================================
+   PAGE PRODUIT & BANNIÈRE ÉMERAUDE
+   ========================================================================== */
+
+.root-container {
+    -fx-background-color: #F4F7F6;
+}
+
+/* Bannière d'en-tête (25% hauteur) avec gradient Émeraude Sombre */
+.pane_gauche_entete {
+    -fx-pref-height: 25vh;
+    -fx-min-height: 140px;
+    -fx-background-color: linear-gradient(to right, #112b1c 0%, #1a5336 100%);
+    -fx-background-radius: 16px;
+    -fx-padding: 24px 32px;
+    -fx-effect: dropshadow(three-pass-box, rgba(17, 43, 28, 0.25), 12, 0, 0, 6);
+}
+
+.label-titre-banner {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.label-sous-titre-banner {
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 1px;
+}
+
+/* Bouton Nouveau Produit */
+.btn-action-banner {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #112b1c;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 24px;
+    -fx-cursor: hand;
+    -fx-padding: 12px 24px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.15), 6, 0, 0, 2);
+}
+
+.btn-action-banner:hover {
+    -fx-background-color: #E8F5E9;
+    -fx-text-fill: #1a5336;
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+/* Conteneur de la table */
+.card-container {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 16px;
+    -fx-padding: 16px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.04), 8, 0, 0, 2);
+}
+
+/* ==========================================================================
+   TABLEVIEW
+   ========================================================================== */
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #F9FAFB;
+    -fx-background-radius: 8px 8px 0 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 40px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #6B7280;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.table-row-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent transparent #F3F4F6 transparent;
+    -fx-cell-size: 42px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #FAFAFA;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #F0FDF4;
+}

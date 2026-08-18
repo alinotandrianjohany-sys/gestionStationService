@@ -1,0 +1,154 @@
+/* ==========================================================================
+   FORMULAIRE NOUVEAU ACHAT (MODALE)
+   ========================================================================== */
+
+/* Conteneur principal */
+.root-vbox {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 28px;
+    -fx-spacing: 18px;
+    -fx-pref-width: 420px;
+    -fx-background-radius: 16px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 15, 0, 0, 5);
+}
+
+/* Titre de la modale */
+.title-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #112b1c;
+    -fx-padding: 0 0 8px 0;
+}
+
+/* Labels des champs */
+.form-group Label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4B5563;
+}
+
+.subtitle-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #6B7280;
+    -fx-font-weight: normal;
+}
+
+/* Champs de texte */
+.text-field {
+    -fx-background-color: #F9FAFB;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 12px;
+    -fx-font-size: 13px;
+    -fx-text-fill: #1F2937;
+}
+
+.text-field:focused {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #3f9b2a;
+    -fx-effect: dropshadow(three-pass-box, rgba(63, 155, 42, 0.2), 4, 0, 0, 0);
+}
+
+/* Groupe combiné : Champ texte + ComboBox */
+.form-hbox {
+    -fx-spacing: 10px;
+}
+
+.choix-field {
+    -fx-hbox-grow: always;
+}
+
+/* ComboBox stylisé */
+.combo-box {
+    -fx-background-color: #F9FAFB;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 4px;
+    -fx-font-size: 13px;
+}
+
+.combo-box:focused {
+    -fx-border-color: #3f9b2a;
+}
+
+/* Bouton d'action principal */
+.btn-submit {
+    -fx-background-color: linear-gradient(to right, #3f9b2a, #112b1c);
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px;
+    -fx-cursor: hand;
+    -fx-max-width: infinity;
+}
+
+.btn-submit:hover {
+    -fx-opacity: 0.92;
+    -fx-scale-x: 1.01;
+    -fx-scale-y: 1.01;
+}
+
+/* Message de validation / erreur */
+.message-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #EF4444;
+    -fx-alignment: center;
+}
+
+/* ==========================================================================
+   STYLE DES BOUTONS D'ACTION
+   ========================================================================== */
+
+/* Conteneur des boutons */
+.form-hbox {
+    -fx-padding-top: 8px;
+}
+
+/* Bouton Annuler (Gris neutre moderne avec survol doux) */
+.btn-cancel {
+    -fx-background-color: #F3F4F6;
+    -fx-text-fill: #4B5563;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-border-color: #D1D5DB;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px 16px;
+    -fx-cursor: hand;
+}
+
+.btn-cancel:hover {
+    -fx-background-color: #E5E7EB;
+    -fx-text-fill: #111827;
+    -fx-border-color: #9CA3AF;
+}
+
+.btn-cancel:pressed {
+    -fx-background-color: #D1D5DB;
+}
+
+/* Bouton Enregistrer (Vert Action avec dégradé Menthe) */
+.btn-submit {
+    -fx-background-color: linear-gradient(to right, #3f9b2a, #00c9a7);
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px 16px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 201, 167, 0.25), 6, 0, 0, 2);
+}
+
+.btn-submit:hover {
+    -fx-opacity: 0.92;
+    -fx-scale-x: 1.01;
+    -fx-scale-y: 1.01;
+}
+
+.btn-submit:pressed {
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}

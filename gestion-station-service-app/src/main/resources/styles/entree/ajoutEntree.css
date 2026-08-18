@@ -1,0 +1,100 @@
+/* ==========================================================================
+   MODALE AJOUT ENTRÉE EN STOCK (MENTHE LUMINEUSE)
+   ========================================================================== */
+
+/* Conteneur principal */
+.root-vbox {
+    -fx-background-color: #FFFFFF;
+    -fx-pref-width: 440px;
+    -fx-background-radius: 16px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.12), 15, 0, 0, 5);
+}
+
+/* Bannière d'en-tête (Dégradé Vert / Menthe) */
+/* Remplacez l'ancien bloc par ceci */
+.pane_gauche_entete {
+    -fx-pref-height: 140px;
+    -fx-min-height: 140px;
+    -fx-background-color: linear-gradient(to bottom right, #3f9b2a 0%, #00c9a7 100%);
+    -fx-background-radius: 16px;
+    -fx-padding: 24px 32px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 201, 167, 0.25), 12, 0, 0, 6);
+}
+
+.label-titre-banner {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.label-sous-titre-banner {
+    -fx-text-fill: rgba(255, 255, 255, 0.85);
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 1px;
+}
+
+/* Labels des champs */
+.field-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4B5563;
+}
+
+/* Champs de texte et Liste déroulante */
+.text-field, .combo-box {
+    -fx-background-color: #F9FAFB;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 12px;
+    -fx-font-size: 13px;
+    -fx-text-fill: #1F2937;
+}
+
+.text-field:focused, .combo-box:focused {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #00c9a7;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 201, 167, 0.2), 4, 0, 0, 0);
+}
+
+/* Boutons d'action */
+.btn-submit {
+    -fx-background-color: linear-gradient(to right, #3f9b2a, #00c9a7);
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 11px;
+    -fx-cursor: hand;
+    -fx-max-width: infinity;
+}
+
+.btn-submit:hover {
+    -fx-opacity: 0.92;
+    -fx-scale-x: 1.01;
+    -fx-scale-y: 1.01;
+}
+
+.btn-cancel {
+    -fx-background-color: #F3F4F6;
+    -fx-text-fill: #4B5563;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 11px;
+    -fx-cursor: hand;
+    -fx-max-width: infinity;
+}
+
+.btn-cancel:hover {
+    -fx-background-color: #E5E7EB;
+    -fx-text-fill: #1F2937;
+}
+
+/* Message d'erreur */
+.error-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #EF4444;
+    -fx-alignment: center;
+}

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -8,44 +7,44 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<!--Utilisons virtual pour une l'affichage lesy brooo mifampitaingitaingina 
-reo amin'izay sa tsy zany :)>-->
-
-<VBox prefHeight="300.0" prefWidth="400.0" spacing="15.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stationservice.Controller.dossierAchat.NouveauAchat">
-    
-    <padding>
-        <Insets bottom="20" left="20" right="20" top="20" />
-    </padding>
-    
+<VBox styleClass="root-vbox" stylesheets="@../../styles/achat/nouveauAchat.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stationservice.Controller.dossierAchat.NouveauAchat">
     <children>
-        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Acheter un Produit" />
+        <Label styleClass="title-label" text="Acheter un Produit" />
         
-        <VBox>
-            <Label text="Numero du Produi :" />
-            <TextField fx:id="txtNumProduit" promptText="Ex : ess-1" />
+        <!-- Champ Produit -->
+        <VBox spacing="6.0" styleClass="form-group">
+            <children>
+                <Label text="Numéro du Produit :" />
+                <TextField fx:id="txtNumProduit" promptText="Ex : ess-1" />
+            </children>
         </VBox>
         
-        <VBox>
-            <Label text="Nom du Client :" />
-            <TextField fx:id="txtNomClient" promptText="Ex : Rakoto Jean" />
+        <!-- Champ Client -->
+        <VBox spacing="6.0" styleClass="form-group">
+            <children>
+                <Label text="Nom du Client :" />
+                <TextField fx:id="txtNomClient" promptText="Ex : Rakoto Jean" />
+            </children>
         </VBox>
         
-        <VBox>
-            <Label text="Type d'achat :" />
-            <VBox>
-                <Label prefHeight="17.0" prefWidth="224.0" text="Quantite (en litre)/ Montant (en Ariary)" />
-            <HBox prefHeight="61.0" prefWidth="360.0">
-               <children>
-                      <TextField fx:id="txtChoix" prefHeight="25.0" prefWidth="355.0" />
-                  <ComboBox fx:id="ComboTypeAchat" prefWidth="150.0" />
-               </children>
-            </HBox>
-            </VBox>
+        <!-- Type d'achat & Quantité -->
+        <VBox spacing="6.0" styleClass="form-group">
+            <children>
+                <Label text="Type d'achat :" />
+                <Label styleClass="subtitle-label" text="Quantité (en litre) / Montant (en Ariary)" />
+                <HBox styleClass="form-hbox">
+                    <children>
+                        <TextField fx:id="txtChoix" styleClass="choix-field" HBox.hgrow="ALWAYS" />
+                        <ComboBox fx:id="ComboTypeAchat" prefWidth="120.0" styleClass="type-combo" />
+                    </children>
+                </HBox>
+            </children>
         </VBox>
                     
-        <Button fx:id="BtnEnregistrer" maxWidth="Infinity" onAction="#Btn_effectuerNouveauAchat" text="Enregistrer" />
+        <!-- Bouton Enregistrer -->
+        <Button fx:id="BtnEnregistrer" onAction="#Btn_effectuerNouveauAchat" styleClass="btn-submit" text="Enregistrer" />
         
-        <Label fx:id="txtMessage" />
-         <VBox />
+        <!-- Message de notification -->
+        <Label fx:id="txtMessage" styleClass="message-label" />
     </children>
 </VBox>

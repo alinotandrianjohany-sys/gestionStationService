@@ -1,5 +1,5 @@
 /* ==========================================================================
-   STYLE MODALE SANS PANNEAU D'EN-TÊTE
+   MODALE MODIFICATION ENTRÉE STOCK (STYLE ÉPURÉ)
    ========================================================================== */
 
 .root-vbox {
@@ -8,7 +8,7 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.08), 12, 0, 0, 4);
 }
 
-/* En-tête typographique */
+/* Typographie d'en-tête */
 .form-title {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
@@ -37,7 +37,7 @@
     -fx-text-fill: #374151;
 }
 
-.text-field, .combo-box {
+.text-field {
     -fx-background-color: #F9FAFB;
     -fx-border-color: #D1D5DB;
     -fx-border-radius: 6px;
@@ -47,24 +47,29 @@
     -fx-text-fill: #111827;
 }
 
-.text-field:focused, .combo-box:focused {
+.text-field:focused {
     -fx-background-color: #FFFFFF;
     -fx-border-color: #3F9B2A;
     -fx-effect: dropshadow(three-pass-box, rgba(63, 155, 42, 0.2), 3, 0, 0, 0);
 }
 
+/* Champs en lecture seule (Greyed out) */
 .read-only-field {
     -fx-background-color: #F3F4F6;
     -fx-border-color: #E5E7EB;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 12px;
+    -fx-font-size: 13px;
     -fx-text-fill: #6B7280;
     -fx-font-weight: bold;
 }
 
-.read-only-info {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #112B1C;
-    -fx-padding: 4px 0;
+/* Message d'erreur */
+.error-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #EF4444;
+    -fx-alignment: center;
 }
 
 /* Boutons */
@@ -96,8 +101,57 @@
     -fx-background-color: #E5E7EB;
 }
 
-.error-label {
-    -fx-font-size: 12px;
-    -fx-text-fill: #EF4444;
-    -fx-alignment: center;
+/* ==========================================================================
+   STYLE DES BOUTONS D'ACTION
+   ========================================================================== */
+
+/* Conteneur des boutons */
+.form-hbox {
+    -fx-padding-top: 8px;
+}
+
+/* Bouton Annuler (Gris neutre moderne avec survol doux) */
+.btn-cancel {
+    -fx-background-color: #F3F4F6;
+    -fx-text-fill: #4B5563;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-border-color: #D1D5DB;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px 16px;
+    -fx-cursor: hand;
+}
+
+.btn-cancel:hover {
+    -fx-background-color: #E5E7EB;
+    -fx-text-fill: #111827;
+    -fx-border-color: #9CA3AF;
+}
+
+.btn-cancel:pressed {
+    -fx-background-color: #D1D5DB;
+}
+
+/* Bouton Enregistrer (Vert Action avec dégradé Menthe) */
+.btn-submit {
+    -fx-background-color: linear-gradient(to right, #3f9b2a, #00c9a7);
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px 16px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 201, 167, 0.25), 6, 0, 0, 2);
+}
+
+.btn-submit:hover {
+    -fx-opacity: 0.92;
+    -fx-scale-x: 1.01;
+    -fx-scale-y: 1.01;
+}
+
+.btn-submit:pressed {
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
 }

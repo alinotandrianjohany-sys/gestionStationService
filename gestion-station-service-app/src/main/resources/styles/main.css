@@ -1,3 +1,92 @@
+/* ==========================================================================
+   PALETTE & BARRE DE NAVIGATION
+   ========================================================================== */
+
+/* Conteneur principal du menu latéral */
+.sidebar {
+    -fx-background-color: #FAFAFA;
+    -fx-border-color: transparent #E5E7EB transparent transparent;
+    -fx-border-width: 1px;
+    -fx-padding: 24px 16px;
+}
+
+/* En-tête / Marque */
+.brand-title {
+    -fx-text-fill: #0F5233;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 20px 8px;
+}
+
+/* ==========================================================================
+   BOUTONS DE NAVIGATION
+   ========================================================================== */
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #555555;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10px 14px;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+    -fx-graphic-text-gap: 12px;
+}
+
+/* Effet au survol */
+.nav-button:hover {
+    -fx-background-color: #E8F5E9;
+    -fx-text-fill: #0F5233;
+}
+
+/* Bouton sélectionné / actif */
+.nav-button:focused, .nav-button:active {
+    -fx-background-color: #0F5233;
+    -fx-text-fill: #FFFFFF;
+}
+
+/* ==========================================================================
+   ICÔNES SVG (FontAwesome Shapes)
+   ========================================================================== */
+
+.icon {
+    -fx-min-width: 16px;
+    -fx-min-height: 16px;
+    -fx-max-width: 16px;
+    -fx-max-height: 16px;
+    -fx-background-color: #555555;
+}
+
+.nav-button:hover .icon {
+    -fx-background-color: #0F5233;
+}
+
+.nav-button:focused .icon, .nav-button:active .icon {
+    -fx-background-color: #FFFFFF;
+}
+
+/* Icône Dashboard (Grille) */
+.icon-dashboard {
+    -fx-shape: "M4 13h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1zm0 8h6a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1zm10 0h6a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1zm0-18v4a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1z";
+}
+
+/* Icône Produits (Boîte / Cube) */
+.icon-produits {
+    -fx-shape: "M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9zM12 4.15L6.04 7.5 12 10.85l5.96-3.35L12 4.15z";
+}
+
+/* Icône Achat (Caddie) */
+.icon-achat {
+    -fx-shape: "M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z";
+}
+
+/* Icône Entrée (Flèche d'import / stock) */
+.icon-entree {
+    -fx-shape: "M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z";
+}
+
+/* Zone de contenu principale */
 .contentArea {
-    -fx-background-color: #FFFFFF;   
+    -fx-background-color: #F4F7F6;
 }
