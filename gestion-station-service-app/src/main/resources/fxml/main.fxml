@@ -1,57 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="650.0" prefWidth="950.0" stylesheets="@/styles/main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stationservice.Controller.MainController">
+<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stationservice.Controller.MainController">
 
-	<!-- 1. CÔTÉ GAUCHE : Sidebar Figée -->
+	<!-- Menu laterat gauche -->
 	<left>
-		<VBox prefWidth="220.0" spacing="10.0" styleClass="sidebar">
-			<padding>
-				<Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
-			</padding>
+		<VBox prefWidth="200.0" spacing="15.0" style="-fx-background-color: #6A89A7; -fx-padding:20;">
 			<children>
-				<Label styleClass="sidebar-title" text="Station Essence" />
-				<VBox prefHeight="20.0" /> <!-- Espaceur -->
-
-				<Button fx:id="btnDashboard" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleDashboard" styleClass="menu-button" text="Tableau de Bord" />
-				<Button fx:id="btnProduits" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleProduits" styleClass="menu-button" text="Produits &amp; Stock" />
-				<Button fx:id="btnAchats" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleAchats" styleClass="menu-button" text="Achat" />
-				<Button fx:id="btnEntrees" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleEntrees" styleClass="menu-button" text="Entrée" />
-				<Button fx:id="btnEntretiens" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleEntretiens" styleClass="menu-button" text="Services &amp; Entretien" />
+				<Label style="-fx-text-fill: white; -fx-font-size: 16px;" text="Station Essence" />
+				<Button fx:id="btnDashboard" maxWidth="1.7976931348623157E308" onAction="#handleDashboard" text="Tableau de Bord" />
+				<Button fx:id="btnProduits" maxWidth="1.7976931348623157E308" onAction="#handleProduits" text="Produits &amp; Stock" />
+				<Button fx:id="btnEntretien" maxWidth="1.7976931348623157E308" onAction="#handleEntretiens" text="Achat" />
+                                <Button fx:id="btnEntree" maxWidth="1.7976931348623157E308" onAction="#handleEntrees" text="Entree" />
 			</children>
 		</VBox>
 	</left>
-
-	<!-- 2. PARTIE DROITE : En-tête Fixe + Zone de Contenu Dynamique -->
+	
 	<center>
-		<VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f8fafc;" BorderPane.alignment="CENTER">
-			<children>
-
-				<!-- EN-TÊTE FIXE (Style sobre gris clair / titre bleu-gris) -->
-				<VBox styleClass="header-banner">
-					<padding>
-						<Insets bottom="15.0" left="25.0" right="25.0" top="20.0" />
-					</padding>
-					<children>
-						<Label fx:id="lblHeaderTitle" styleClass="header-title" text="Tableau de bord" />
-						<Label fx:id="lblHeaderSubtitle" styleClass="header-subtitle" text="Vue d'ensemble de l'activité et des performances" />
-					</children>
-				</VBox>
-
-				<!-- ZONE D'AFFICHAGE DES COMPOSANTS (Chargement dynamique) -->
-				<AnchorPane fx:id="contentArea" VBox.vgrow="ALWAYS">
-					<padding>
-						<Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
-					</padding>
-				</AnchorPane>
-
-			</children>
-		</VBox>
+		<AnchorPane fx:id="contentArea" prefHeight="600.0" prefWidth="700.0" styleClass="contentArea" stylesheets="@../styles/main.css" />
 	</center>
 </BorderPane>

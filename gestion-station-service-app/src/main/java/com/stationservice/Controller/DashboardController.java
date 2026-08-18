@@ -1,11 +1,24 @@
 package com.stationservice.Controller;
-
+///com.stationservice.Controller.DashboardController
 import com.stationservice.config.DatabaseConfig;
 import com.stationservice.dao.AchatDao;
 import com.stationservice.dao.EntretienDao;
 import com.stationservice.dao.ProduitDao;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+
+import com.stationservice.Models.RecetteMensuelle;
+import com.stationservice.dao.AchatDao;
+import com.stationservice.config.DatabaseConfig;
+
+import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import org.jdbi.v3.core.Jdbi;
+
+import java.util.List;
 
 public class DashboardController {
 
@@ -17,10 +30,21 @@ public class DashboardController {
 
     @FXML
     private Label labelStockFaible;
+    
+    @FXML
+    private BarChart<String, Number> chartRecettesMois;
+
+    @FXML
+    private CategoryAxis xAxisMois;
+
+    @FXML
+    private NumberAxis yAxisMontant;
 
     @FXML
     public void initialize() {
         try {
+            chargerGraphiqueRecettes();
+            
             // Instanciation des DAO via Jdbi
             AchatDao achatDao = DatabaseConfig.getJdbi().onDemand(AchatDao.class);
             EntretienDao entretienDao = DatabaseConfig.getJdbi().onDemand(EntretienDao.class);
@@ -70,4 +94,26 @@ public class DashboardController {
             e.printStackTrace();
         }
     }
+    
+    private void chargerGraphiqueRecettes() {
+        try {
+            Jdbi jdbi = DatabaseConfig.getJdbi();
+            List<RecetteMensuelle> recettes = jdbi.withExtension(AchatDao.class, AchatDao::obtenirRecettesCinqDerniersMois);
+
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            series.setName("Recettes");
+
+            for (RecetteMensuelle r : recettes) {
+                series.getData().add(new XYChart.Data<>(r.getMoisAnnee(), r.getTotalMensuel()));
+            }
+
+            chartRecettesMois.getData().clear();
+            chartRecettesMois.getData().add(series);
+
+        } catch (Exception e) {
+            System.err.println("Erreur lors du chargement du graphique : " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }
+

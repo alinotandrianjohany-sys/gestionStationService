@@ -1,46 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-
-<VBox  spacing="15.0" prefWidth="400.0" prefHeight="300.0"
-      xmlns="http://javafx.com/javafx/21" 
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.stationservice.Controller.dossierProduit.ModifierProduit">
-    
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
-    
+<VBox styleClass="root-vbox" stylesheets="@../../styles/produit/ajoutProduit.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stationservice.Controller.dossierProduit.ModifierProduit">
     <children>
-        <Label text="Modification de Produit" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+        <!-- Titre -->
+        <Label styleClass="title-label" text="Modification de Produit" />
         
-        <VBox>
-            <Label text="Nom du produit :"/>
-            <TextField fx:id="txtNom" promptText="Ex : Essence sans plomb 95"/>
+        <!-- Nom du produit -->
+        <VBox spacing="6.0" styleClass="form-group">
+            <children>
+                <Label text="Nom du produit :" />
+                <TextField fx:id="txtNom" promptText="Ex : Essence SP95" />
+            </children>
         </VBox>
         
-        <VBox>
-            <Label text="Prix Unitaire :"/>
-            <TextField fx:id="txtPrix" promptText="Ex : 1.50"/>
+        <!-- Prix Unitaire -->
+        <VBox spacing="6.0" styleClass="form-group">
+            <children>
+                <Label text="Prix Unitaire (Ar) :" />
+                <TextField fx:id="txtPrix" promptText="Ex : 5900" />
+            </children>
         </VBox>
         
-        <VBox>
-            <Label text="Quantite (en litre):"/>
-            <Label fx:id="txtNombreLitre"/>
+        <!-- Quantité (Lecture seule/Information) -->
+        <VBox spacing="6.0" styleClass="form-group">
+            <children>
+                <Label text="Quantité (en litre) :" />
+                <Label fx:id="txtNombreLitre" styleClass="subtitle-label" />
+            </children>
         </VBox>
         
-        <HBox>
-            <Button fx:id="BtnFermer" onAction="#Btn_annulerModification" text="Annuler" prefWidth="100.0"/>
-            <Button fx:id="BtnEnregistrer" onAction="#Btn_EnregistrerModification" text="Enregistrer" prefWidth="100.0"/>
+        <!-- Boutons d'action -->
+        <HBox spacing="10.0" styleClass="form-hbox">
+            <children>
+                <Button fx:id="BtnFermer" onAction="#Btn_annulerModification" styleClass="btn-cancel" text="Annuler" HBox.hgrow="ALWAYS" />
+                <Button fx:id="BtnEnregistrer" onAction="#Btn_EnregistrerModification" styleClass="btn-submit" text="Enregistrer" HBox.hgrow="ALWAYS" />
+            </children>
         </HBox>
         
-        
-        <Label fx:id="txtMessage"/>
+        <!-- Message de notification -->
+        <Label fx:id="txtMessage" styleClass="message-label" />
     </children>
 </VBox>

@@ -6,6 +6,7 @@
 package com.stationservice.dao;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import com.stationservice.Models.Achat;
+import com.stationservice.Models.RecetteMensuelle;
 
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
@@ -34,24 +35,10 @@ public interface AchatDao {
     @SqlQuery("SELECT COUNT(*) FROM achat")
     int getNombreAchats();
     
-    //recuperer tout les produit
-    @SqlQuery("SELECT * FROM achat")
-    List<Achat> select();
-    
     //recuperer un unique
     @SqlQuery("SELECT * FROM ACHAT WHERE num_prod = :num_prod")
     Optional<Achat> findById(@Bind("num_prod")  String num_prod);
     
-    /*
-    @SqlUpdate("""
-               UPDATE achat SET 
-               num_prod = :num_prod,
-               nom_client = :nom_client ,
-               nbr_litre = :nbr_litre, 
-               montant_paye_achat = :montant_paye_achat , 
-               date_achat = :date_achat  
-               """)
-    Boolean update(@BindBean Achat achat);*/
     
     @SqlUpdate("""
                UPDATE achat SET 
@@ -69,7 +56,7 @@ public interface AchatDao {
     
     @SqlUpdate("""
                UPDATE produit
-               SET stock = stock - :nbr_litre,
+               SET stock = stock - :nbr_litre
                WHERE num_prod = :num_prod
                """)
     boolean diminuerStockProduit(
@@ -90,5 +77,26 @@ public interface AchatDao {
         }
         return confirmer;
     }
+    
+    //recuperation des valeur pour le tableau
+    @SqlQuery("SELECT a.*, p.design FROM achat a LEFT JOIN produit p ON a.num_prod = p.num_prod")
+    List<Achat> select();   
+    
+    //supprimer achat
+    @SqlUpdate("DELETE FROM achat WHERE num_achat = :num_achat")
+    Boolean delete(@Bind("num_achat") String num_achat);
+    
+    @SqlQuery("""
+        SELECT 
+            TO_CHAR(date_achat, 'MM/YYYY') AS moisAnnee,
+            COALESCE(SUM(montant_paye_achat), 0) AS totalMensuel
+        FROM achat
+        WHERE date_achat >= DATE_TRUNC('month', CURRENT_DATE - INTERVAL '4 month')
+        GROUP BY DATE_TRUNC('month', date_achat), TO_CHAR(date_achat, 'MM/YYYY')
+        ORDER BY DATE_TRUNC('month', date_achat) ASC
+        LIMIT 5
+    """)
+    @RegisterBeanMapper(RecetteMensuelle.class)
+    List<RecetteMensuelle> obtenirRecettesCinqDerniersMois();
     
 }

@@ -62,6 +62,11 @@ public class MainController {
         setActiveButton(btnEntretiens);
         loadView("/fxml/dossierEntretien/entretien.fxml");
     }
+    
+    @FXML
+    private void handleClient(){
+        loadView("/fxml/dossierClient/client.fxml");
+    }
 
     private void updateHeader(String title, String subtitle) {
         lblHeaderTitle.setText(title);

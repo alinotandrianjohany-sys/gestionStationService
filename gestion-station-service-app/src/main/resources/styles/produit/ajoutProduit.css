@@ -1,0 +1,93 @@
+/* ==========================================================================
+   FORMULAIRE AJOUT PRODUIT (MODALE)
+   ========================================================================== */
+
+/* Conteneur principal */
+.root-vbox {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 28px;
+    -fx-spacing: 18px;
+    -fx-pref-width: 420px;
+    -fx-background-radius: 16px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 15, 0, 0, 5);
+}
+
+/* Titre de la modale */
+.title-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #112b1c;
+    -fx-padding: 0 0 8px 0;
+}
+
+/* Labels des champs */
+.form-group Label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4B5563;
+}
+
+.subtitle-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #6B7280;
+    -fx-font-weight: normal;
+}
+
+/* Champs de texte */
+.text-field {
+    -fx-background-color: #F9FAFB;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 12px;
+    -fx-font-size: 13px;
+    -fx-text-fill: #1F2937;
+}
+
+.text-field:focused {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #1a5336;
+    -fx-effect: dropshadow(three-pass-box, rgba(26, 83, 54, 0.2), 4, 0, 0, 0);
+}
+
+/* Bouton d'action principal (Dégradé Émeraude) */
+.btn-submit {
+    -fx-background-color: linear-gradient(to right, #112b1c, #1a5336);
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px;
+    -fx-cursor: hand;
+    -fx-max-width: infinity;
+}
+
+.btn-submit:hover {
+    -fx-opacity: 0.92;
+    -fx-scale-x: 1.01;
+    -fx-scale-y: 1.01;
+}
+
+/* Message de notification */
+.message-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #EF4444;
+    -fx-alignment: center;
+}
+
+/* Bouton d'annulation */
+.btn-cancel {
+    -fx-background-color: #F3F4F6;
+    -fx-text-fill: #4B5563;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px;
+    -fx-cursor: hand;
+    -fx-max-width: infinity;
+}
+
+.btn-cancel:hover {
+    -fx-background-color: #E5E7EB;
+    -fx-text-fill: #1F2937;
+}
