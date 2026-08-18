@@ -38,6 +38,12 @@
 						<Region styleClass="icon, icon-entree" />
 					</graphic>
 				</Button>
+                                
+                                <Button fx:id="btnClient" maxWidth="1.7976931348623157E308" onAction="#handleClient" styleClass="nav-button" text="Client">
+					<graphic>
+						<Region styleClass="icon, icon-client" />
+					</graphic>
+				</Button>
 			</children>
 		</VBox>
 	</left>

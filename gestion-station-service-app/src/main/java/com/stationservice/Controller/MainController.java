@@ -40,6 +40,11 @@ public class MainController {
     private void handleEntrees(){
         loadView("/fxml/dossierEntree/entree.fxml");
     }
+    
+    @FXML
+    private void handleClient(){
+        loadView("/fxml/dossierClient/client.fxml");
+    }
 
     
     private void loadView(String fxmlPath){

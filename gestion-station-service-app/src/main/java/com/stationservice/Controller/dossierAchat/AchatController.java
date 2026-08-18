@@ -33,6 +33,7 @@ public class AchatController {
     @FXML private TableColumn<Achat, String> num_achat;
     @FXML private TableColumn<Achat, String> num_prod;
     @FXML private TableColumn<Achat, Double> nbr_litre;
+    @FXML private TableColumn<Achat, String> nom_client;
     @FXML private TableColumn<Achat, Integer> montant_paye_achat;
     @FXML private TableColumn<Achat, Void> colAction;
 
@@ -48,7 +49,7 @@ public class AchatController {
         num_achat.setCellValueFactory(new PropertyValueFactory<>("num_achat"));
         nbr_litre.setCellValueFactory(new PropertyValueFactory<>("nbr_litre"));
         montant_paye_achat.setCellValueFactory(new PropertyValueFactory<>("montant_paye_achat"));
-
+        nom_client.setCellValueFactory(new PropertyValueFactory<>("nom_client"));
         // 2. Affichage du NOM du produit au lieu de num_prod
         num_prod.setCellValueFactory(cellData -> {
             Achat achat = cellData.getValue();

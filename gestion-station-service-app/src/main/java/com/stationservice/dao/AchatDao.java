@@ -6,6 +6,7 @@
 package com.stationservice.dao;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import com.stationservice.Models.Achat;
+import com.stationservice.Models.RecetteMensuelle;
 
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
@@ -84,5 +85,18 @@ public interface AchatDao {
     //supprimer achat
     @SqlUpdate("DELETE FROM achat WHERE num_achat = :num_achat")
     Boolean delete(@Bind("num_achat") String num_achat);
+    
+    @SqlQuery("""
+        SELECT 
+            TO_CHAR(date_achat, 'MM/YYYY') AS moisAnnee,
+            COALESCE(SUM(montant_paye_achat), 0) AS totalMensuel
+        FROM achat
+        WHERE date_achat >= DATE_TRUNC('month', CURRENT_DATE - INTERVAL '4 month')
+        GROUP BY DATE_TRUNC('month', date_achat), TO_CHAR(date_achat, 'MM/YYYY')
+        ORDER BY DATE_TRUNC('month', date_achat) ASC
+        LIMIT 5
+    """)
+    @RegisterBeanMapper(RecetteMensuelle.class)
+    List<RecetteMensuelle> obtenirRecettesCinqDerniersMois();
     
 }

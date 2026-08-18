@@ -57,6 +57,7 @@
                                 <columns>
                                     <TableColumn fx:id="num_achat" prefWidth="60.0" text="ID" />
                                     <TableColumn fx:id="num_prod" prefWidth="160.0" text="Produit" />
+                                    <TableColumn fx:id="nom_client" prefWidth="160.0" text="Client"/>
                                     <TableColumn fx:id="nbr_litre" prefWidth="80.0" text="Litres" />
                                     <TableColumn fx:id="montant_paye_achat" prefWidth="90.0" text="Total" />
                                     <TableColumn fx:id="colAction" prefWidth="90.0" text="Actions" />

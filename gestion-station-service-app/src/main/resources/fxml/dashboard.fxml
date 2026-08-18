@@ -8,6 +8,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+
 <AnchorPane fx:id="fenetre_base" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #F4F7F6;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stationservice.Controller.DashboardController">
 
     <children>
@@ -61,16 +65,26 @@
                 <HBox fx:id="hbox_affichage_donne" spacing="16.0" VBox.vgrow="ALWAYS">
                     <children>
                         <!-- Panneau Graphique -->
+                        <!-- 🟢 CORRECT : VBox sans fx:controller -->
                         <VBox style="-fx-background-color: #FFFFFF; -fx-background-radius: 16px; -fx-padding: 18px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 8, 0, 0, 2);" HBox.hgrow="ALWAYS">
                             <children>
                                 <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1A1A1A;" text="Recette des 5 derniers mois" />
+
+                                <BarChart fx:id="chartRecettesMois" legendVisible="false" prefHeight="280.0" prefWidth="450.0" VBox.vgrow="ALWAYS">
+                                    <xAxis>
+                                        <CategoryAxis fx:id="xAxisMois" label="Mois" />
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis fx:id="yAxisMontant" label="Recette (Ar)" />
+                                    </yAxis>
+                                </BarChart>
                             </children>
                         </VBox>
 
                         <!-- Panneau Clients -->
                         <VBox style="-fx-background-color: #FFFFFF; -fx-background-radius: 16px; -fx-padding: 18px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 8, 0, 0, 2);" HBox.hgrow="ALWAYS">
                             <children>
-                                <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1A1A1A;" text="Les 5 meilleur.e.s Clients" />
+                                
                             </children>
                         </VBox>
                     </children>

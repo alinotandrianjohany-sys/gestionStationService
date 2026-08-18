@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="650.0" prefWidth="900.0" spacing="16.0" styleClass="main-container" stylesheets="@../../styles/client/client.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stationservice.Controller.dossierClient.ClientController">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <children>
+      
+      <!-- Bannière d'en-tête Client -->
+      <!-- En-tête / Bannière Prémium -->
+        <HBox alignment="CENTER_LEFT" styleClass="banner-pane">
+            <children>
+               <VBox alignment="CENTER_LEFT" spacing="4.0" HBox.hgrow="ALWAYS">
+                  <children>
+                     <Label styleClass="banner-title" text="Portefeuille Clients" />
+                     <Label styleClass="banner-subtitle" text="Suivi analytique des achats, classement Top 5 et gestion des fiches clients" />
+                  </children>
+               </VBox>
+            </children>
+         </HBox>
+      <!-- Contenu principal côte à côte -->
+      <HBox spacing="16.0" VBox.vgrow="ALWAYS">
+         <children>
+            
+            <!-- Section Gauche : Liste Globale des Clients -->
+            <VBox spacing="12.0" styleClass="card-pane" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="card-title" text="Liste des Clients" />
+                        <Label styleClass="card-subtitle" text="Historique global des clients ayant effectué des achats au point de vente" />
+                     </children>
+                  </VBox>
+
+                  <!-- Barre de recherche et actions -->
+                  <HBox alignment="CENTER_LEFT" spacing="8.0">
+                     <children>
+                        <TextField fx:id="txtRecherche" onAction="#handleRechercher" promptText="Rechercher par nom..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+                        <Button onAction="#handleRechercher" styleClass="btn-action-primary" text="Rechercher" />
+                        <Button onAction="#handleAnnuler" styleClass="btn-action-secondary" text="Réinitialiser" />
+                     </children>
+                  </HBox>
+
+                  <!-- Table 1 : Tous les clients -->
+                  <TableView fx:id="tableTousClients" styleClass="custom-table" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="colNom_client" prefWidth="250.0" text="Nom du Client" />
+                        <TableColumn fx:id="colTotal_paye" prefWidth="200.0" text="Total Dépensé (Ar)" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </VBox>
+
+            <!-- Section Droite : Top 5 & Cartes KPI -->
+            <VBox prefWidth="320.0" spacing="16.0">
+               <children>
+                  
+                  <!-- Table 2 : Top 5 Clients -->
+                  <VBox spacing="10.0" styleClass="card-pane" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label styleClass="card-title-highlight" text="🏆 Top 5 des Clients" />
+                        <TableView fx:id="tableTop5Clients" styleClass="custom-table" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="colRangClient" prefWidth="50.0" text="Rang" />
+                              <TableColumn fx:id="colTopNomClient" prefWidth="130.0" text="Client" />
+                              <TableColumn fx:id="colTopTotalPaye" prefWidth="110.0" text="Total Payé" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </VBox>
+
+                  <!-- Cartes d'information / KPI -->
+                  <VBox spacing="10.0" styleClass="kpi-card">
+                     <children>
+                        <Label styleClass="kpi-title" text="Statistiques Globales" />
+                        <Label styleClass="kpi-subtitle" text="Analyse calculée en temps réel d'après la base de données PostgreSQL." wrapText="true" />
+                     </children>
+                  </VBox>
+
+               </children>
+            </VBox>
+
+         </children>
+      </HBox>
+
+   </children>
+</VBox>
