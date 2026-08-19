@@ -1,83 +1,114 @@
-.root {
-    -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+/* ==========================================================================
+   STYLE GLOBAL & BANNIÈRE D'EN-TÊTE
+   ========================================================================== */
+
+.root-container {
     -fx-background-color: #F4F7F6;
 }
 
-/* Bannière verte / turquoise */
-.header-banner {
-    -fx-background-color: linear-gradient(to right, #00B4DB, #0083B0);
+/* Bannière avec dégradé vert (style collègue) */
+.pane_gauche_entete {
+    -fx-pref-height: 120px;
+    -fx-min-height: 100px;
+    -fx-background-color: linear-gradient(to right, #3f9b2a 0%, #112b1c 100%);
     -fx-background-radius: 16px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 4);
+    -fx-padding: 20px 30px;
+    -fx-effect: dropshadow(three-pass-box, rgba(17, 43, 28, 0.2), 12, 0, 0, 6);
 }
 
-.banner-subtitle {
-    -fx-text-fill: #E0F7FA;
+.label-titre-banner {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.label-sous-titre-banner {
+    -fx-text-fill: rgba(255, 255, 255, 0.75);
     -fx-font-size: 11px;
     -fx-font-weight: bold;
 }
 
-.banner-title {
-    -fx-text-fill: #FFFFFF;
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-}
-
-.btn-new-service {
+/* Boutons d'action modernes au sein de la bannière */
+.btn-action-banner {
     -fx-background-color: #FFFFFF;
-    -fx-text-fill: #0083B0;
+    -fx-text-fill: #112b1c;
+    -fx-font-size: 13px;
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
     -fx-background-radius: 20px;
-    -fx-padding: 10px 20px;
     -fx-cursor: hand;
+    -fx-padding: 8px 18px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.15), 5, 0, 0, 2);
 }
 
-.card-pane {
-    -fx-background-color: #FFFFFF;
-    -fx-background-radius: 16px;
-    -fx-padding: 20px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 8, 0, 0, 2);
-}
-
-.badge-total {
+.btn-action-banner:hover {
     -fx-background-color: #E8F5E9;
-    -fx-text-fill: #2E7D32;
+    -fx-text-fill: #3f9b2a;
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.btn-secondary-banner {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px;
     -fx-font-weight: bold;
-    -fx-padding: 6px 14px;
+    -fx-background-radius: 20px;
+    -fx-cursor: hand;
+    -fx-padding: 8px 16px;
+}
+
+.btn-secondary-banner:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================================================
+   TABLEVIEW MODERNE
+   ========================================================================== */
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 12px;
     -fx-background-radius: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.03), 6, 0, 0, 2);
 }
 
-/* Boutons d'action du tableau */
-.btn-action-edit {
-    -fx-background-color: #3182CE;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-background-radius: 6px;
-    -fx-cursor: hand;
+.table-view .column-header-background {
+    -fx-background-color: #F9FAFB;
+    -fx-background-radius: 12px 12px 0 0;
 }
 
-.btn-action-delete {
-    -fx-background-color: #E53E3E;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-background-radius: 6px;
-    -fx-cursor: hand;
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 42px;
 }
 
-.btn-save {
-    -fx-background-color: #3182CE;
-    -fx-text-fill: white;
+.table-view .column-header .label {
+    -fx-text-fill: #6B7280;
     -fx-font-weight: bold;
-    -fx-background-radius: 6px;
-    -fx-padding: 8px 16px;
-    -fx-cursor: hand;
+    -fx-font-size: 12px;
+    -fx-alignment: CENTER-LEFT;
 }
 
-.btn-cancel {
-    -fx-background-color: #E2E8F0;
-    -fx-text-fill: #4A5568;
-    -fx-font-weight: bold;
-    -fx-background-radius: 6px;
-    -fx-padding: 8px 16px;
-    -fx-cursor: hand;
+.table-row-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent transparent #F3F4F6 transparent;
+    -fx-cell-size: 42px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #FAFAFA;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #F0FDF4;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #DCFCE7;
+    -fx-text-fill: #112b1c;
+}
+
+.table-row-cell:selected .text {
+    -fx-fill: #112b1c;
 }
