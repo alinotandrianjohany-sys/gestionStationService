@@ -8,7 +8,7 @@
 
 /* Bannière d'en-tête (25% hauteur) avec gradient Émeraude Sombre */
 .pane_gauche_entete {
-    -fx-pref-height: 25vh;
+    -fx-pref-height: 160px;
     -fx-min-height: 140px;
     -fx-background-color: linear-gradient(to right, #112b1c 0%, #1a5336 100%);
     -fx-background-radius: 16px;
