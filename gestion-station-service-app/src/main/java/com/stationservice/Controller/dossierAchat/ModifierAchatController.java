@@ -43,10 +43,10 @@ public class ModifierAchatController {
     //@FXML private TextField txtMontantPayer;
     @FXML private ComboBox ComboTypeAchat;
     @FXML private Label txtMessage;
-    
+
     private ProduitDao produitDao = DatabaseConfig.getDao(ProduitDao.class);
     private AchatDao achatDao = DatabaseConfig.getDao(AchatDao.class);
-    
+
     public void Initialise(Achat achat){
         txtNumProduit.setText(achat.getNum_prod());
         txtNomClient.setText(achat.getNom_client());
@@ -54,13 +54,13 @@ public class ModifierAchatController {
         //gestion de combobox
         ComboTypeAchat.getItems().addAll("Litre", "Ariary");
         ComboTypeAchat.setValue("Litre");
-        
+
     }
-    
+
     public void Btn_effectuerModificationAchat(){
-    
+
     }
-    
+
     @FXML
     private void handleAnnuler(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

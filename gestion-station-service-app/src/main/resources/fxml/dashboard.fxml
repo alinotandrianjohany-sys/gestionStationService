@@ -18,7 +18,7 @@
         <!-- Layout principal en VBox ancré sur les 4 côtés -->
         <VBox spacing="20.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
             <children>
-                
+
                 <!-- 1. BARRE D'EN-TÊTE / HEADER -->
                 <HBox fx:id="pane_en_tete" alignment="CENTER_LEFT" minHeight="50.0" style="-fx-background-color: transparent;">
                     <!-- Insérez ici votre barre de recherche, notifications ou profil -->
@@ -51,7 +51,15 @@
                             </children>
                         </VBox>
 
-                        <!-- Carte 3 : Stock Faible -->
+                        <!-- Carte 3 : Entretiens / Services (Intégration transparente) -->
+                        <VBox spacing="12.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 16px; -fx-padding: 18px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 8, 0, 0, 2);" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label style="-fx-text-fill: #888888; -fx-font-size: 13px; -fx-font-weight: bold;" text="Entretiens &amp; Services" />
+                                <Label fx:id="labelNombreServices" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1A1A1A;" text="0" />
+                            </children>
+                        </VBox>
+
+                        <!-- Carte 4 : Stock Faible -->
                         <VBox spacing="12.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 16px; -fx-padding: 18px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 8, 0, 0, 2);" HBox.hgrow="ALWAYS">
                             <children>
                                 <Label style="-fx-text-fill: #888888; -fx-font-size: 13px; -fx-font-weight: bold;" text="Stock faible" />
@@ -65,7 +73,6 @@
                 <HBox fx:id="hbox_affichage_donne" spacing="16.0" VBox.vgrow="ALWAYS">
                     <children>
                         <!-- Panneau Graphique -->
-                        <!-- 🟢 CORRECT : VBox sans fx:controller -->
                         <VBox style="-fx-background-color: #FFFFFF; -fx-background-radius: 16px; -fx-padding: 18px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 8, 0, 0, 2);" HBox.hgrow="ALWAYS">
                             <children>
                                 <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1A1A1A;" text="Recette des 5 derniers mois" />
@@ -81,10 +88,13 @@
                             </children>
                         </VBox>
 
-                        <!-- Panneau Clients -->
+                        <!-- Panneau Entretiens & Services Récents -->
                         <VBox style="-fx-background-color: #FFFFFF; -fx-background-radius: 16px; -fx-padding: 18px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 8, 0, 0, 2);" HBox.hgrow="ALWAYS">
                             <children>
-                                
+                                <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #1A1A1A;" text="Derniers Entretiens &amp; Services" />
+
+                                <!-- Emplacement pour charger la liste/table d'entretiens -->
+                                <VBox fx:id="containerActivitesRecentes" spacing="8.0" VBox.vgrow="ALWAYS" style="-fx-padding: 10 0 0 0;" />
                             </children>
                         </VBox>
                     </children>

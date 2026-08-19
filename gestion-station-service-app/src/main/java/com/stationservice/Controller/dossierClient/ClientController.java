@@ -66,8 +66,8 @@ public class ClientController {
 
         // Configuration de la Table 2 (Top 5)
         // Rang automatique basé sur l'index de la ligne + 1
-        colRangClient.setCellValueFactory(cellData -> 
-            new ReadOnlyObjectWrapper<>(tableTop5Clients.getItems().indexOf(cellData.getValue()) + 1)
+        colRangClient.setCellValueFactory(cellData ->
+                new ReadOnlyObjectWrapper<>(tableTop5Clients.getItems().indexOf(cellData.getValue()) + 1)
         );
         colTopNomClient.setCellValueFactory(new PropertyValueFactory<>("nom_client"));
         colTopTotalPaye.setCellValueFactory(new PropertyValueFactory<>("total_paye"));
@@ -120,9 +120,9 @@ public class ClientController {
 
         try {
             Jdbi jdbi = DatabaseConfig.getJdbi();
-            List<Client> resultats = jdbi.withExtension(ClientDao.class, 
-                dao -> dao.rechercherClientsParNom("%" + recherche + "%"));
-            
+            List<Client> resultats = jdbi.withExtension(ClientDao.class,
+                    dao -> dao.rechercherClientsParNom("%" + recherche + "%"));
+
             listeClients.setAll(resultats);
         } catch (Exception e) {
             System.err.println("Erreur lors de la recherche : " + e.getMessage());

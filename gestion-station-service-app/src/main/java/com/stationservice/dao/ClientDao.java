@@ -20,7 +20,7 @@ import java.util.List;
  */
 @RegisterBeanMapper(Client.class)
 public interface ClientDao {
-    
+
     // 1. Tous les clients triés par ordre alphabétique
     @SqlQuery("""
         SELECT nom_client, SUM(montant_paye_achat) AS total_paye 
@@ -54,4 +54,3 @@ public interface ClientDao {
     List<Client> obtenirTop5Clients();
 
 }
-

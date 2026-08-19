@@ -8,7 +8,7 @@
 
 /* Bannière d'en-tête (25% hauteur) avec gradient Menthe Lumineuse */
 .pane_gauche_entete {
-    -fx-pref-height: 160px;
+    -fx-pref-height: 25vh;
     -fx-min-height: 140px;
     -fx-background-color: linear-gradient(to bottom right, #3f9b2a 0%, #00c9a7 100%);
     -fx-background-radius: 16px;

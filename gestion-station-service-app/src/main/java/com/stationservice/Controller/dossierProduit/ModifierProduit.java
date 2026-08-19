@@ -28,19 +28,19 @@ public class ModifierProduit {
     @FXML private Label txtMessage;
     @FXML private Button BtnEnregistrer;
     @FXML private Button BtnFermer;
-    
+
     @FXML private Produit ProduitAModifier;
     @FXML private ProduitDao DAOProduit = DatabaseConfig.getDao(ProduitDao.class);
-    
-    @FXML 
+
+    @FXML
     public void initialize(Produit produit){
         ProduitAModifier = produit;
-        
+
         txtNom.setText(produit.getDesign());
         txtPrix.setText(String.valueOf(produit.getPrix_litre_prod()));
         txtNombreLitre.setText(String.valueOf(produit.getStock()));
     }
-    
+
     @FXML
     private void Btn_EnregistrerModification(){
         //filtrer les ajout 
@@ -49,48 +49,48 @@ public class ModifierProduit {
             afficherMessage("Le nom du produit est vide");
             return;
         }
-        
+
         if (!txtNom.getText().matches(regexNom)) {
             afficherMessage("Nom de produit invalide");
             return;
         }
-       
-        
+
+
         //String regexNombre = "^[0-9]+(?:\\.[0-9]{1,2})?$";
         String regexNombre = "^[0-9]+$";
         if (txtPrix.getText().trim().isEmpty()) {
             afficherMessage("Le prix du produit est vide");
             return;
         }
-        
+
         if (!txtPrix.getText().matches(regexNombre)) {
             afficherMessage("Le prix du produit est invalide");
             return;
         }
-        
+
         int Prix = Integer.parseInt(txtPrix.getText());
         if (Prix <= 0){
             afficherMessage("Le nombre de litre doit etre superieur à 0 ");
             return;
         }
-        
+
         //le nombre de litre 
-        
+
         //apres que les valeur sont actuellement sur 
         String nom = txtNom.getText();
         ProduitAModifier.setDesign(nom);
         ProduitAModifier.setPrix_litre_prod(Prix);
-        
+
         //ajout dans la base de donne
         Boolean estModifier = false;
-        
+
         try {
-            
+
             estModifier = DAOProduit.update(ProduitAModifier);
-            
+
         } catch (JdbiException e) {
             if (e.getCause() instanceof PSQLException psqlException) {
-                
+
                 // Code SQLState 23505 = Violation de contrainte UNIQUE
                 if ("23505".equals(psqlException.getSQLState())) {
                     afficherMessage("Erreur de doublon : Le produit existe déjà !");
@@ -98,7 +98,7 @@ public class ModifierProduit {
                 }
             }
         }
-        
+
         if (estModifier){
             Stage stage = (Stage) BtnEnregistrer.getScene().getWindow();
             supprimerChamps();
@@ -107,21 +107,21 @@ public class ModifierProduit {
             afficherMessage("Erreur s'est produit lors du modification");
         }
     }
-    
-    @FXML 
+
+    @FXML
     private void Btn_annulerModification(){
         Stage stage = (Stage) BtnFermer.getScene().getWindow();
         stage.close();
         supprimerChamps();
     }
-    
-    
-    
+
+
+
     private void afficherMessage(String message){
         txtMessage.setText(message);
         txtMessage.setStyle("-fx-text-fill: red;");
     }
-    
+
     private void supprimerChamps(){
         txtNom.setText("");
         txtPrix.setText("");
