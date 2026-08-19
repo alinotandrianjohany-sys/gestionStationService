@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+
 import com.stationservice.dao.ProduitDao;
 import com.stationservice.dao.AchatDao;
 import com.stationservice.Models.Achat;
@@ -28,6 +29,8 @@ import javafx.scene.control.ComboBox;
 import org.postgresql.util.PSQLException;
 import org.jdbi.v3.core.JdbiException;
 
+import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -40,6 +43,7 @@ public class NouveauAchat {
     @FXML private TextField txtChoix;
     @FXML private Button BtnEnregistrer;
     //@FXML private TextField txtMontantPayer;
+    @FXML private ComboBox<Produit> comboProduit; // ou ComboBox<String> si vous stockez uniquement les numéros
     @FXML private ComboBox ComboTypeAchat;
     @FXML private Label txtMessage;
     
@@ -49,7 +53,15 @@ public class NouveauAchat {
     public void initialize(){
         ComboTypeAchat.getItems().addAll("Ariary");
         ComboTypeAchat.setValue("Litre");
-    }
+    chargerProduits();
+}
+
+private void chargerProduits() {
+    List<Produit> listeProduits = produitDao.findAll();
+
+    comboProduit.getItems().clear();
+    comboProduit.getItems().addAll(listeProduits);
+}
     
     @FXML
 private void Btn_effectuerNouveauAchat() {
@@ -64,7 +76,7 @@ private void Btn_effectuerNouveauAchat() {
         afficherMessage("Nom du client invalide");
         return;
     }
-    
+    /*
     if (txtNumProduit.getText().trim().isEmpty()) {
         afficherMessage("Le produit est vide");
         return;
@@ -76,9 +88,20 @@ private void Btn_effectuerNouveauAchat() {
         return;
     } 
     
-    Produit produit = produitOpt.get();
+    Produit produit = produitOpt.get();*/
+    
+    //initialisation de est ajuter
     boolean estAjoute = false;
     
+    // Si vous utilisez ComboBox<Produit> :
+    Produit produitSelectionne = comboProduit.getValue();
+
+    if (produitSelectionne == null) {
+        txtMessage.setText("Veuillez sélectionner un produit.");
+        return;
+    }
+    
+    //choix de type d'achat
     if (ComboTypeAchat.getValue() == null || ComboTypeAchat.getValue().toString().trim().isEmpty()) {
         afficherMessage("Type Achat : Litre ou Montant.");
         return;
@@ -108,15 +131,15 @@ private void Btn_effectuerNouveauAchat() {
             return;
         }
         
-        double quantite = (double) prix / produit.getPrix_litre_prod();
+        double quantite = (double) prix / produitSelectionne.getPrix_litre_prod();
         
-        if (quantite > produit.getStock()) {
+        if (quantite > produitSelectionne.getStock()) {
             afficherMessage("Désolé, le stock est insuffisant...");
             return;
         }
         
         try {
-            Achat newAchat = new Achat(genererNumEntree(), produit.getNum_prod(), txtNomClient.getText().trim(), quantite, prix);
+            Achat newAchat = new Achat(genererNumEntree(), produitSelectionne.getNum_prod(), txtNomClient.getText().trim(), quantite, prix);
             estAjoute = achatDao.enregistrerVenteEtMettreAJourStock(newAchat);
             
             if (estAjoute) {
@@ -153,17 +176,17 @@ private void Btn_effectuerNouveauAchat() {
             return;
         }
         
-        if (quantite > produit.getStock()) {
+        if (quantite > produitSelectionne.getStock()) {
             afficherMessage("Le stock de produit est insuffisant");
             return;
         }
         
         // Conversion sécurisée de Double en int sans passer par toString()
-        double calcule = quantite * produit.getPrix_litre_prod();
+        double calcule = quantite * produitSelectionne.getPrix_litre_prod();
         int montantAPayer = (int) Math.round(calcule);
         
         try {
-            Achat newAchat = new Achat("ka", produit.getNum_prod(), txtNomClient.getText().trim(), quantite, montantAPayer);
+            Achat newAchat = new Achat( genererNumEntree(), produitSelectionne.getNum_prod(), txtNomClient.getText().trim(), quantite, montantAPayer);
             estAjoute = achatDao.enregistrerVenteEtMettreAJourStock(newAchat);
             
             if (estAjoute) {
@@ -205,7 +228,7 @@ private void Btn_effectuerNouveauAchat() {
     
     private String genererNumEntree() {
         int totalEntrees = achatDao.getNombreAchats();
-        int nouveauNumero = totalEntrees + 1;
+        int nouveauNumero = totalEntrees + 2;
         
         // Formatage exact : entree-1, entree-2, etc.
         return "achat-" + nouveauNumero;
