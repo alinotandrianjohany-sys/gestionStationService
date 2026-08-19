@@ -4,30 +4,64 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stationservice.Controller.MainController">
+<BorderPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stationservice.Controller.MainController">
 
-	<!-- Menu lateral gauche -->
+	<!-- Menu latéral gauche -->
 	<left>
-		<VBox prefWidth="200.0" spacing="15.0" style="-fx-background-color: #6A89A7; -fx-padding:20;">
+		<VBox prefWidth="220.0" spacing="8.0" styleClass="sidebar">
 			<children>
-				<Label style="-fx-text-fill: white; -fx-font-size: 16px;" text="Station Essence" />
-				<Button fx:id="btnDashboard" maxWidth="1.7976931348623157E308" onAction="#handleDashboard" text="Tableau de Bord" />
-				<Button fx:id="btnProduits" maxWidth="1.7976931348623157E308" onAction="#handleProduits" text="Produits &amp; Stock" />
-				<Button fx:id="btnAchat" maxWidth="1.7976931348623157E308" onAction="#handleAchat" text="Achat" />
-				<Button fx:id="btnEntree" maxWidth="1.7976931348623157E308" onAction="#handleEntrees" text="Entrée" />
+				<Label styleClass="brand-title" text="Station Essence" />
 
-				<!-- Navigation distincte -->
-				<Button fx:id="btnEntretien" maxWidth="1.7976931348623157E308" onAction="#handleEntretiens" text="Entretiens" />
-				<Button fx:id="btnService" maxWidth="1.7976931348623157E308" onAction="#handleServices" text="Services &amp; Tarifs" />
+				<Button fx:id="btnDashboard" maxWidth="1.7976931348623157E308" onAction="#handleDashboard" styleClass="nav-button" text="Tableau de Bord">
+					<graphic>
+						<Region styleClass="icon, icon-dashboard" />
+					</graphic>
+				</Button>
 
-				<Button fx:id="btnClient" maxWidth="1.7976931348623157E308" onAction="#handleClient" text="Client" />
+				<Button fx:id="btnProduits" maxWidth="1.7976931348623157E308" onAction="#handleProduits" styleClass="nav-button" text="Produits">
+					<graphic>
+						<Region styleClass="icon, icon-produits" />
+					</graphic>
+				</Button>
+
+				<Button fx:id="btnStock" maxWidth="1.7976931348623157E308" onAction="#handleAchat" styleClass="nav-button" text="Achat">
+					<graphic>
+						<Region styleClass="icon, icon-achat" />
+					</graphic>
+				</Button>
+
+				<Button fx:id="btnEntree" maxWidth="1.7976931348623157E308" onAction="#handleEntrees" styleClass="nav-button" text="Entrée">
+					<graphic>
+						<Region styleClass="icon, icon-entree" />
+					</graphic>
+				</Button>
+
+				<Button fx:id="btnClient" maxWidth="1.7976931348623157E308" onAction="#handleClient" styleClass="nav-button" text="Client">
+					<graphic>
+						<Region styleClass="icon, icon-client" />
+					</graphic>
+				</Button>
+
+				<Button fx:id="btnEntretien" maxWidth="1.7976931348623157E308" onAction="#handleEntretiens" styleClass="nav-button" text="Entretien">
+					<graphic>
+						<Region styleClass="icon, icon-entretien" />
+					</graphic>
+				</Button>
+
+				<!-- Bouton Service corrigé avec onAction et l'icône appropriée -->
+				<Button fx:id="btnService" maxWidth="1.7976931348623157E308" onAction="#handleServices" styleClass="nav-button" text="Services &amp; Tarifs">
+					<graphic>
+						<Region styleClass="icon, icon-service" />
+					</graphic>
+				</Button>
 			</children>
 		</VBox>
 	</left>
 
 	<center>
-		<AnchorPane fx:id="contentArea" prefHeight="600.0" prefWidth="700.0" styleClass="contentArea" stylesheets="@../styles/main.css" />
+		<AnchorPane fx:id="contentArea" prefHeight="600.0" prefWidth="680.0" styleClass="contentArea" />
 	</center>
 </BorderPane>
