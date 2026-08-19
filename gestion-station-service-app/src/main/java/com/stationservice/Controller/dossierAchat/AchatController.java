@@ -38,7 +38,7 @@ public class AchatController {
     @FXML private TableColumn<Achat, Void> colAction;
 
     private final ObservableList<Achat> _listeAchat = FXCollections.observableArrayList();
-    
+
     // Initialisation des DAO via DatabaseConfig (JDBI 3)
     public AchatDao _achatDao = DatabaseConfig.getDao(AchatDao.class);
     public ProduitDao _produitDao = DatabaseConfig.getDao(ProduitDao.class);
@@ -121,7 +121,7 @@ public class AchatController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DossierAchat/modifierAchat.fxml"));
             Parent root = loader.load();
-            
+
             ModifierAchatController controller = loader.getController();
             controller.Initialise(achat);
             Stage popUp = new Stage();

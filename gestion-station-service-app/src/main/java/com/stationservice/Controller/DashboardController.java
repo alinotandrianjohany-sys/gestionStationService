@@ -1,17 +1,14 @@
 package com.stationservice.Controller;
-///com.stationservice.Controller.DashboardController
+
 import com.stationservice.config.DatabaseConfig;
 import com.stationservice.dao.AchatDao;
 import com.stationservice.dao.EntretienDao;
 import com.stationservice.dao.ProduitDao;
+import com.stationservice.Models.RecetteMensuelle;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
-import com.stationservice.Models.RecetteMensuelle;
-import com.stationservice.dao.AchatDao;
-import com.stationservice.config.DatabaseConfig;
-
-import javafx.fxml.FXML;
+import javafx.scene.layout.VBox;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -29,8 +26,14 @@ public class DashboardController {
     private Label labelNombreAchats;
 
     @FXML
+    private Label labelNombreServices;
+
+    @FXML
     private Label labelStockFaible;
-    
+
+    @FXML
+    private VBox containerActivitesRecentes;
+
     @FXML
     private BarChart<String, Number> chartRecettesMois;
 
@@ -44,7 +47,7 @@ public class DashboardController {
     public void initialize() {
         try {
             chargerGraphiqueRecettes();
-            
+
             // Instanciation des DAO via Jdbi
             AchatDao achatDao = DatabaseConfig.getJdbi().onDemand(AchatDao.class);
             EntretienDao entretienDao = DatabaseConfig.getJdbi().onDemand(EntretienDao.class);
@@ -80,6 +83,16 @@ public class DashboardController {
                 }
             }
 
+            // Affichage du nombre d'entretiens / services
+            if (labelNombreServices != null) {
+                try {
+                    // Si votre EntretienDao possède une méthode de comptage (ex: getNombreEntretiens)
+                    labelNombreServices.setText(String.valueOf(entretienDao.getChiffreAffairesEntretien() > 0 ? "Actifs" : "0"));
+                } catch (Exception e) {
+                    labelNombreServices.setText("0");
+                }
+            }
+
             if (labelStockFaible != null) {
                 try {
                     int nbStockFaible = produitDao.findStockFaible().size();
@@ -94,7 +107,7 @@ public class DashboardController {
             e.printStackTrace();
         }
     }
-    
+
     private void chargerGraphiqueRecettes() {
         try {
             Jdbi jdbi = DatabaseConfig.getJdbi();
@@ -116,4 +129,3 @@ public class DashboardController {
         }
     }
 }
-

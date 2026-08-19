@@ -42,7 +42,7 @@ public class NouveauEntreeController {
 
     // REGEX : Uniquement des nombres positifs (ex: 50, 100.5, 250.75)
     private static final String QUANTITE_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
-    
+
     @FXML
     public void initialize() {
         // Initialiser la connexion JDBI
@@ -61,7 +61,7 @@ public class NouveauEntreeController {
 
     private void chargerProduits() {
         List<Produit> produits = _produitDao.findAll();
-        
+
         cbProduit.getItems().addAll(produits);
 
         // Personnaliser l'affichage dans le ComboBox (ex: P001 - Essence)
@@ -81,7 +81,7 @@ public class NouveauEntreeController {
     private void genererNumEntree() {
         int totalEntrees = _entreeDao.countEntrees();
         int nouveauNumero = totalEntrees + 1;
-        
+
         // Formatage exact : entree-1, entree-2, etc.
         txtNumEntree.setText("entree-" + nouveauNumero);
     }
@@ -116,11 +116,11 @@ public class NouveauEntreeController {
 
         // --- ENREGISTREMENT BD ---
         String numEntree = txtNumEntree.getText();
-        
+
         Entree _entree = new Entree(numEntree, produitSelectionne.getNum_prod(), Integer.parseInt(quantiteTexte) );
-        
+
         boolean succes = _entreeDao.insertEntreeEtModificationStock(_entree);
-                
+
 
         if (succes) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Entrée de stock enregistrée avec succès !", ButtonType.OK);
@@ -135,5 +135,5 @@ public class NouveauEntreeController {
             lblError.setText("Erreur lors de l'enregistrement dans la base de données.");
         }
     }
-    
+
 }

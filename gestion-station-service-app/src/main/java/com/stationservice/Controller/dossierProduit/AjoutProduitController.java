@@ -28,79 +28,79 @@ import org.jdbi.v3.core.JdbiException;
  * @author DELL
  */
 public class AjoutProduitController {
-    
+
     @FXML private TextField txtNom ;
     @FXML private TextField txtPrix;
     @FXML private TextField txtNombreLitre;
     @FXML private Label txtMessage;
     @FXML private Button BtnEnregistrer;
-    
-    @FXML 
+
+    @FXML
     private void handleEnregistrer() {
-        
+
         //filtrer les ajout 
         String regexNom = "^[\\p{L}0-9\\s\\-]+$"; // Exemple : lettres et chiffres seulement
         if (txtNom.getText().trim().isEmpty()){
             afficherMessage("Le nom du produit est vide");
             return;
         }
-        
+
         if (!txtNom.getText().matches(regexNom)) {
             afficherMessage("Nom de produit invalide");
             return;
         }
-       
-        
+
+
         //String regexNombre = "^[0-9]+(?:\\.[0-9]{1,2})?$";
         String regexNombre = "^[0-9]+$";
         if (txtPrix.getText().trim().isEmpty()) {
             afficherMessage("Le prix du produit est vide");
             return;
         }
-        
+
         if (!txtPrix.getText().matches(regexNombre)) {
             afficherMessage("Le prix du produit est invalide");
             return;
         }
-        
+
         int Prix = Integer.parseInt(txtPrix.getText());
         if (Prix <= 0){
             afficherMessage("Le nombre de litre doit etre superieur à 0 ");
             return;
         }
-        
+
         //le nombre de litre 
         if (txtNombreLitre.getText().trim().isEmpty()) {
             afficherMessage("Le nombre de litre est vide");
             return;
         }
-        
+
         if (!txtNombreLitre.getText().matches(regexNombre)){
             afficherMessage("Le nombre de litre est invalide");
             return;
         }
-        
+
         Double Quantite = Double.parseDouble(txtNombreLitre.getText());
         if (Quantite < 0){
             afficherMessage("Le nombre de litre doit etre positif ");
             return;
         }
-       
+
         //apres que les valeur sont actuellement sur 
         String nom = txtNom.getText();
-        
-        
+
+
         //ajout dans la classe roduit puis saise dans la base de donnee
         boolean estAjoute = false;
-        
+
         try {
             Produit newProd = new Produit(creerNumProduit(nom),nom ,Quantite,Prix);
             ProduitDao produitDao = DatabaseConfig.getDao(ProduitDao.class);
             estAjoute = produitDao.insert(newProd);
-            
+
         } catch (JdbiException e) {
             if (e.getCause() instanceof PSQLException psqlException) {
-                
+
                 // Code SQLState 23505 = Violation de contrainte UNIQUE
                 if ("23505".equals(psqlException.getSQLState())) {
                     afficherMessage("Erreur de doublon : Le produit existe déjà !");
@@ -108,50 +108,50 @@ public class AjoutProduitController {
                 }
             }
         }
-        
+
         if (estAjoute) {
             txtMessage.setText("Produit ajouté avec succès !");
             txtMessage.setStyle("-fx-text-fill: green;");
-            
+
             //vider les champs
             supprimerChamps();
-            
+
             //fermer la fenetre ai
             fermetureFenetre();
-            
+
         } else {
             txtMessage.setText("Erreur lors de l'ajout du produit");
             txtMessage.setStyle("-fx-text-fill: red;");
         }
-        
+
         System.out.println("est ajouter  -> " + estAjoute);
     }
-    
+
     private void fermetureFenetre(){
         Stage stage = (Stage) BtnEnregistrer.getScene().getWindow();
         ScheduledExecutorService timer = Executors.newScheduledThreadPool(1);
         timer.schedule((()-> {
             stage.close();
-            
+
         }) ,3, TimeUnit.SECONDS);
-    }     
-    
+    }
+
     private void supprimerChamps(){
         txtNom.setText("");
         txtPrix.setText("");
         txtNombreLitre.setText("");
     }
-    
+
     private String creerNumProduit(String nom){
-       ProduitDao produitDao = DatabaseConfig.getDao(ProduitDao.class);
-       int nbr = produitDao.nombreProduitAjouter();
-       nbr++;
-       
-       char[] tab = nom.toCharArray();
-       String code = tab[0] + "" + tab[1]+ "" + tab[2] + "-" + nbr;
-       return code;
+        ProduitDao produitDao = DatabaseConfig.getDao(ProduitDao.class);
+        int nbr = produitDao.nombreProduitAjouter();
+        nbr++;
+
+        char[] tab = nom.toCharArray();
+        String code = tab[0] + "" + tab[1]+ "" + tab[2] + "-" + nbr;
+        return code;
     }
-    
+
     private void afficherMessage(String message){
         txtMessage.setText(message);
         txtMessage.setStyle("-fx-text-fill: red;");

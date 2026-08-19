@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDateTime;
 
 public class EntretienController {
@@ -56,16 +57,28 @@ public class EntretienController {
     @FXML
     private void handleNew() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dossierEntretiens/newEntretien.fxml"));
+            // Chemin corrigé (sans 's' à dossierEntretien et sans l'annotation de paramètre 'name:')
+            URL resource = getClass().getResource("/fxml/dossierEntretien/newEntretien.fxml");
+
+            if (resource == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Le fichier FXML est introuvable à l'emplacement : /fxml/dossierEntretien/newEntretien.fxml");
+                alert.showAndWait();
+                return;
+            }
+
+            FXMLLoader loader = new FXMLLoader(resource);
             Parent root = loader.load();
 
+            // Récupération du contrôleur avant l'affichage
+            NewEntretienController controller = loader.getController();
+
             Stage stage = new Stage();
-            stage.setTitle("New Entretien");
+            stage.setTitle("Nouvel Entretien");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(root));
             stage.showAndWait();
 
-            NewEntretienController controller = loader.getController();
+            // Traitement du résultat après fermeture
             Entretien newEntretien = controller.getNewEntretien();
 
             if (newEntretien != null) {

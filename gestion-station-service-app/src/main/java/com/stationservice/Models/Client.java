@@ -39,7 +39,7 @@ public class Client {
         this.total_paye = total_paye;
     }
 
-    
+
     @Override
     public String toString() {
         return "Client{" +

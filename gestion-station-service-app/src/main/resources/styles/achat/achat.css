@@ -117,7 +117,7 @@
 
 .pane_gauche_entete {
     /* 25vh = 25% de la hauteur de la fenêtre */
-    -fx-pref-height: 25vh;
+    -fx-pref-height: 200px;
     -fx-min-height: 140px;
     
     /* Dégradé fluide et fond vert */

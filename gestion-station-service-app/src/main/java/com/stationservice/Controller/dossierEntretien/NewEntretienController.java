@@ -82,7 +82,7 @@ public class NewEntretienController {
         return newEntretien;
     }
 
-    // Classe interne pour la gestion des sélections
+    // Classe interne pour la gestion de la sélection des services dans la ListView
     public static class ServiceSelection {
         private final Service service;
         private final BooleanProperty selected = new SimpleBooleanProperty(false);
