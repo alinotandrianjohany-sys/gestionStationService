@@ -9,10 +9,10 @@ public class Entretien {
     private LocalDateTime dateEntretien;
     private int prixEntretien;
 
-    // Constructeur vide (nécessaire pour Jdbi)
+    // Constructeur vide (pour Jdbi)
     public Entretien() {}
 
-    // Constructeur avec tous les arguments (nécessaire pour la création dans le contrôleur)
+    // Constructeur complet
     public Entretien(String numEntr, String immatriculationVoiture, String nomClient, LocalDateTime dateEntretien, int prixEntretien) {
         this.numEntr = numEntr;
         this.immatriculationVoiture = immatriculationVoiture;

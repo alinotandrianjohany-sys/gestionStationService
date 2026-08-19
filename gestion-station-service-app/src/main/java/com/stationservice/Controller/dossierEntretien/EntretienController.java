@@ -12,9 +12,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -86,16 +88,24 @@ public class EntretienController {
     private void handleImprimerRecu() {
         Entretien selection = tableEntretien != null ? tableEntretien.getSelectionModel().getSelectedItem() : null;
         if (selection != null) {
-            try {
-                String filename = "Recu_" + selection.getNumEntr() + ".pdf";
-                PdfGenerator.genererRecuEntretien(selection, filename);
+            // Ouvre un sélecteur de fichier pour choisir où enregistrer le PDF
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Enregistrer le reçu PDF");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichiers PDF (*.pdf)", "*.pdf"));
+            fileChooser.setInitialFileName("Recu_" + selection.getNumEntr() + ".pdf");
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Reçu PDF généré avec succès :\n" + filename, ButtonType.OK);
-                alert.showAndWait();
-            } catch (Exception e) {
-                e.printStackTrace();
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Erreur lors de la génération du PDF :\nAssurez-vous que le fichier n'est pas déjà ouvert.", ButtonType.OK);
-                alert.showAndWait();
+            File file = fileChooser.showSaveDialog(tableEntretien.getScene().getWindow());
+
+            if (file != null) {
+                try {
+                    PdfGenerator.genererRecuEntretien(selection, file.getAbsolutePath());
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Reçu PDF généré avec succès :\n" + file.getAbsolutePath(), ButtonType.OK);
+                    alert.showAndWait();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Erreur lors de la génération du PDF :\n" + e.getMessage(), ButtonType.OK);
+                    alert.showAndWait();
+                }
             }
         } else {
             new Alert(Alert.AlertType.WARNING, "Veuillez sélectionner un entretien à imprimer.", ButtonType.OK).showAndWait();

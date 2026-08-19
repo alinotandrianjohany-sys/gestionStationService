@@ -15,7 +15,7 @@
     </padding>
     <children>
 
-        <!-- Zone d'actions aérée et alignée -->
+        <!-- Barre d'outils avec boutons bien espaces -->
         <HBox alignment="CENTER_LEFT" spacing="10.0">
             <children>
                 <Label styleClass="section-title" text="Historique des entretiens réalisés" />
