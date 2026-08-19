@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  * com.stationservice.dao.AchatDao;
-*/
+ */
 package com.stationservice.dao;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import com.stationservice.Models.Achat;
@@ -26,7 +26,7 @@ import java.util.Optional;
  */
 @RegisterBeanMapper(Achat.class)
 public interface AchatDao {
-    
+
     // Cumul du chiffre d'affaires carburant (utilisé pour le Dashboard)
     @SqlQuery("SELECT COALESCE(SUM(montant_paye_achat), 0) FROM achat")
     int getChiffreAffairesCarburant();
@@ -34,26 +34,26 @@ public interface AchatDao {
     // Nombre total de ventes réalisées
     @SqlQuery("SELECT COUNT(*) FROM achat")
     int getNombreAchats();
-    
+
     //recuperer un unique
     @SqlQuery("SELECT * FROM ACHAT WHERE num_prod = :num_prod")
     Optional<Achat> findById(@Bind("num_prod")  String num_prod);
-    
-    
+
+
     @SqlUpdate("""
                UPDATE achat SET 
                nom_client = :nom_client ,
                WHERE num_achat = :num_achat
                """)
     Boolean update(@Bind("nom_client") String nom_client, @Bind("num_achat") String num_achat);
-    
+
     //insertion dans la base
     @SqlUpdate("""
               INSERT INTO achat ( num_achat, num_prod ,nom_client, nbr_litre, montant_paye_achat, date_achat )
               VALUES (:num_achat , :num_prod, :nom_client, :nbr_litre, :montant_paye_achat, :date_achat)
               """)
     Boolean insert(@BindBean Achat achat);
-    
+
     @SqlUpdate("""
                UPDATE produit
                SET stock = stock - :nbr_litre
@@ -63,29 +63,29 @@ public interface AchatDao {
             @Bind("nbr_litre") double nbr_litre,
             @Bind("num_prod") String num_prod
     );
-    
+
     @Transaction
     default boolean enregistrerVenteEtMettreAJourStock(Achat achat){
         // ajout dans la table achat
         boolean confirmer = insert(achat);
-        
+
         // modification de la  stock
         boolean stockMAJ = diminuerStockProduit(achat.getNbr_litre(), achat.getNum_prod());
         if (!confirmer || !stockMAJ){
-            
+
             throw new IllegalStateException("Impossible de modifier la base, achat non effectuer");
         }
         return confirmer;
     }
-    
+
     //recuperation des valeur pour le tableau
     @SqlQuery("SELECT a.*, p.design FROM achat a LEFT JOIN produit p ON a.num_prod = p.num_prod")
-    List<Achat> select();   
-    
+    List<Achat> select();
+
     //supprimer achat
     @SqlUpdate("DELETE FROM achat WHERE num_achat = :num_achat")
     Boolean delete(@Bind("num_achat") String num_achat);
-    
+
     @SqlQuery("""
         SELECT 
             TO_CHAR(date_achat, 'MM/YYYY') AS moisAnnee,
@@ -167,3 +167,4 @@ public interface AchatDao {
     }
     
 }
+

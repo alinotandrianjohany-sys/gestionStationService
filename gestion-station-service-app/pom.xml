@@ -1,14 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  
-  <!-- Vos identifiants initiaux -->
+
   <groupId>com.stationservice</groupId>
   <artifactId>gestion-station-service-app</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
-  <!-- Properties (Java 21 et encodage) -->
   <properties>
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
@@ -16,7 +14,6 @@
     <javafx.version>21</javafx.version>
   </properties>
 
-  <!-- Dépendances -->
   <dependencies>
     <!-- JavaFX Controls -->
     <dependency>
@@ -32,44 +29,59 @@
       <version>${javafx.version}</version>
     </dependency>
 
-    <!-- Driver PostgreSQL -->
-    <!-- Driver JDBC PostgreSQL-->
+    <!-- Driver JDBC PostgreSQL -->
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <version>42.7.2</version>
     </dependency>
-    
-    <!--jdbi 3 core _ gestion de connection -->
+
+    <!-- Jdbi 3 Core -->
     <dependency>
       <groupId>org.jdbi</groupId>
       <artifactId>jdbi3-core</artifactId>
       <version>3.45.1</version>
     </dependency>
-    
-    <!-- Jdbi 3 SqlObject (Pour utiliser les DAO avec annotations @SqlQuery, @SqlUpdate)-->
+
+    <!-- Jdbi 3 SqlObject -->
     <dependency>
-    	<groupId>org.jdbi</groupId>
-    	<artifactId>jdbi3-sqlobject</artifactId>
-    	<version>3.45.1</version>
+      <groupId>org.jdbi</groupId>
+      <artifactId>jdbi3-sqlobject</artifactId>
+      <version>3.45.1</version>
     </dependency>
-    
-    <!-- Jdbi 3 Postgres Plugin (Support des types spécifiques à Postgres si besoin) -->
+
+    <!-- Jdbi 3 Postgres Plugin -->
     <dependency>
       <groupId>org.jdbi</groupId>
       <artifactId>jdbi3-postgres</artifactId>
       <version>3.45.1</version>
     </dependency>
-    
-    <!--suppression d'L'avertissement SLF4J (Journaux d'événements)-->
+
+    <!-- SLF4J Simple Logger -->
     <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-simple</artifactId>
-        <version>2.0.12</version>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>2.0.12</version>
+    </dependency>
+
+    <!-- iText 7 Core (Kernel & Layout) -->
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>kernel</artifactId>
+      <version>7.2.5</version>
+    </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>layout</artifactId>
+      <version>7.2.5</version>
+    </dependency>
+    <dependency>
+        <groupId>com.itextpdf</groupId>
+        <artifactId>io</artifactId>
+        <version>7.2.5</version>
     </dependency>
   </dependencies>
 
-  <!-- Plugins de construction -->
   <build>
     <plugins>
       <plugin>
@@ -81,7 +93,7 @@
           <target>21</target>
         </configuration>
       </plugin>
-      
+
       <plugin>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-maven-plugin</artifactId>
@@ -92,5 +104,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>

@@ -1,7 +1,0 @@
-/target/
-
-.classpath
-.project
-.settings/
-target/
-src/main/resources/db.properties

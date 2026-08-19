@@ -69,7 +69,7 @@ public class EntreeController {
 
     @FXML
     private TableColumn<Entree, LocalDateTime> colDateEntree;
-    
+
     @FXML private TableColumn<Entree, Void> colActions;
 
     private final ObservableList<Entree> listeEntrees = FXCollections.observableArrayList();
@@ -88,7 +88,7 @@ public class EntreeController {
 
         // Lier la liste au TableView
         tableEntree.setItems(listeEntrees);
-        
+
         ajouterBoutonsActions();
 
         // Charger les données
@@ -109,7 +109,7 @@ public class EntreeController {
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
-            
+
             stage.showAndWait();
 
             // Rafraîchir la liste après la fermeture de la fenêtre
@@ -120,7 +120,7 @@ public class EntreeController {
             System.err.println("Erreur lors de l'ouverture de nouveauEntree.fxml : " + e.getMessage());
         }
     }
-    
+
     private void ajouterBoutonsActions(){
         Callback<TableColumn<Entree, Void>, TableCell<Entree, Void>> cellFactory = new Callback<>() {
             @Override
@@ -166,27 +166,27 @@ public class EntreeController {
         colActions.setCellFactory(cellFactory);
     }
 
-    
-    @FXML 
+
+    @FXML
     private void handleModifierEntree(Entree entree){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dossierEntree/modifierEntree.fxml"));
             Parent root = loader.load();
-            
+
             ModifierEntreeController controlleur = loader.getController();
             controlleur.Initialise(entree);
-            
+
             Stage stage = new Stage();
             stage.setTitle("Modification Entrée de Stock");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
-            
+
             stage.showAndWait();
 
             // Rafraîchir la liste après la fermeture de la fenêtre
             chargerDonnees();
-            
+
         } catch (IOException e){
             e.printStackTrace();
             System.err.println("Erreur lors de l'ouverture de nouveauEntree.fxml : " + e.getMessage());
@@ -195,24 +195,24 @@ public class EntreeController {
 
     /**
      * Charge toutes les entrées depuis la base de données
-     */    
+     */
     private void chargerDonnees() {
         try {
             List<Entree> entreesBDD = _entreeDao.findAll();
-            
+
             // Mise à jour propre de l'ObservableList
             listeEntrees.setAll(entreesBDD);
-            
+
             // Rafraîchir l'affichage du tableau
             tableEntree.refresh();
-            
+
             mettreAJourCompteur();
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Erreur lors du chargement des entrées : " + e.getMessage());
         }
     }
-    
+
     private void handleSupprimerEntree(Entree entree) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation de suppression");
@@ -224,10 +224,10 @@ public class EntreeController {
             try {
                 // Suppression via le DAO
                 _entreeDao.delete(entree.getNum_entr());
-                
+
                 // Supprimer directement de la liste observable (évite un rechargement complet)
                 listeEntrees.remove(entree);
-                
+
                 //mettre a jour le compteur
                 mettreAJourCompteur();
             } catch (Exception e) {
@@ -243,6 +243,6 @@ public class EntreeController {
             lblTotalEntrees.setText("Total : " + listeEntrees.size() + " entrée(s)");
         }
     }
-    
-    
+
+
 }

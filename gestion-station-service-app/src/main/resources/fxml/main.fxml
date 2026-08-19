@@ -27,7 +27,7 @@
 					</graphic>
 				</Button>
 				
-				<Button fx:id="btnEntretien" maxWidth="1.7976931348623157E308" onAction="#handleEntretiens" styleClass="nav-button" text="Achat">
+				<Button fx:id="btnEntretien" maxWidth="1.7976931348623157E308" onAction="#handleAchat" styleClass="nav-button" text="Achat">
 					<graphic>
 						<Region styleClass="icon, icon-achat" />
 					</graphic>
@@ -42,6 +42,18 @@
                                 <Button fx:id="btnClient" maxWidth="1.7976931348623157E308" onAction="#handleClient" styleClass="nav-button" text="Client">
 					<graphic>
 						<Region styleClass="icon, icon-client" />
+					</graphic>
+				</Button>
+                                
+                                <Button fx:id="btnEntretien" maxWidth="1.7976931348623157E308" onAction="#handleEntretiens" styleClass="nav-button" text="Entretien">
+					<graphic>
+						<Region styleClass="icon, icon-entretien" />
+					</graphic>
+				</Button>
+                                
+                                <Button fx:id="btnService" maxWidth="1.7976931348623157E308"  styleClass="nav-button" text="Service">
+					<graphic>
+						<Region styleClass="icon, icon-service" />
 					</graphic>
 				</Button>
 			</children>

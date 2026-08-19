@@ -51,7 +51,7 @@ public class Produit {
         
         @Override
         public String toString() {
-            return design + " (" + prix_litre_prod + " €)";
+            return design + " (" + prix_litre_prod + " Ariary)";
         }
 }
 

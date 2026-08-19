@@ -32,3 +32,23 @@ TestResults.xml
 
 # Maven build output
 **/ target/
+
+/target/
+
+.classpath
+.project
+.settings/
+target/
+**/db.properties
+
+# Configuration locale et base de données
+**/db.properties
+
+# Fichiers compilés et caches IDE
+/target/
+**/target/
+.idea/
+*.iml
+.classpath
+.project
+.settings/

@@ -39,7 +39,7 @@ public class ModifierEntreeController {
     public void Initialise(Entree entree){
         initialisationAffichage(entree);
     }
-    
+
     @FXML
     private void handleValiderEntree(ActionEvent event){
         // 1. Nettoyage des espaces superflus (trim)
@@ -79,7 +79,7 @@ public class ModifierEntreeController {
             Entree nouvelleEntree = new Entree(numEntree, numProd, stockEntree);
             boolean resultat = _entreeDao.modificationEntre(nouvelleEntree);
             if (resultat){
-                afficherAlerte("Modification", "Modification effectue avec succees");    
+                afficherAlerte("Modification", "Modification effectue avec succees");
             } else {
                 afficherAlerte("Modification", "Modification non effectue");
             }
@@ -91,16 +91,16 @@ public class ModifierEntreeController {
             e.printStackTrace();
         }
     }
-    
+
     private void initialisationAffichage(Entree entree){
-        
+
         lblDate.setText(entree.getDate_entree().toString().replace("T", " "));
         txtNumEntree.setText(entree.getNum_entr());
         lblProduit.setText(entree.getNum_prod());
         txtStockEntree.setText(String.valueOf(entree.getStock_entree()));
-   
+
     }
-    
+
     private void afficherAlerte(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(titre);
@@ -108,7 +108,7 @@ public class ModifierEntreeController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-    
+
     /**
      * Ferme la fenêtre associée à l'événement déclenché
      */
@@ -117,7 +117,7 @@ public class ModifierEntreeController {
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
     }
-    
+
 
 
     @FXML
@@ -125,9 +125,9 @@ public class ModifierEntreeController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
-    
-    
-    
-    
-    
+
+
+
+
+
 }
