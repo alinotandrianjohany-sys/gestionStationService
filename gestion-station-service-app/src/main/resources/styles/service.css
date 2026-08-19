@@ -1,0 +1,83 @@
+.root {
+    -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    -fx-background-color: #F4F7F6;
+}
+
+/* Bannière verte / turquoise */
+.header-banner {
+    -fx-background-color: linear-gradient(to right, #00B4DB, #0083B0);
+    -fx-background-radius: 16px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 4);
+}
+
+.banner-subtitle {
+    -fx-text-fill: #E0F7FA;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.banner-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.btn-new-service {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #0083B0;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 20px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+}
+
+.card-pane {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 16px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 8, 0, 0, 2);
+}
+
+.badge-total {
+    -fx-background-color: #E8F5E9;
+    -fx-text-fill: #2E7D32;
+    -fx-font-weight: bold;
+    -fx-padding: 6px 14px;
+    -fx-background-radius: 12px;
+}
+
+/* Boutons d'action du tableau */
+.btn-action-edit {
+    -fx-background-color: #3182CE;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.btn-action-delete {
+    -fx-background-color: #E53E3E;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.btn-save {
+    -fx-background-color: #3182CE;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+}
+
+.btn-cancel {
+    -fx-background-color: #E2E8F0;
+    -fx-text-fill: #4A5568;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+}

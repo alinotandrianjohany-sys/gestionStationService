@@ -15,24 +15,26 @@
     </padding>
     <children>
 
-        <!-- Zone d'actions : Titre de section à gauche + Boutons d'action à droite -->
-        <HBox alignment="CENTER_LEFT" spacing="15.0">
+        <!-- Zone d'actions aérée et alignée -->
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
             <children>
                 <Label styleClass="section-title" text="Historique des entretiens réalisés" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button onAction="#handleNew" styleClass="btn-action" text="+ Nouvel Entretien" />
-                <Button onAction="#handleImprimerRecu" styleClass="btn-secondary" text="🖨 Imprimer Reçu (PDF)" />
+                <Button onAction="#handleNew" styleClass="btn-action" text="+ Ajouter" />
+                <Button onAction="#handleModifierEntretien" styleClass="btn-secondary" text="Modifier" />
+                <Button onAction="#handleSupprimerEntretien" styleClass="btn-secondary" text="Supprimer" />
+                <Button onAction="#handleImprimerRecu" styleClass="btn-secondary" text="🖨 Reçu PDF" />
             </children>
         </HBox>
 
-        <!-- Tableau principal prenant tout l'espace vertical -->
-        <TableView fx:id="tableEntretiens" VBox.vgrow="ALWAYS">
+        <!-- Tableau principal -->
+        <TableView fx:id="tableEntretien" VBox.vgrow="ALWAYS">
             <columns>
                 <TableColumn fx:id="colNumEntr" prefWidth="100.0" text="N° Entretien" />
                 <TableColumn fx:id="colImmatriculation" prefWidth="130.0" text="Immatriculation" />
                 <TableColumn fx:id="colNomClient" prefWidth="180.0" text="Nom Client" />
                 <TableColumn fx:id="colDate" prefWidth="160.0" text="Date &amp; Heure" />
-                <TableColumn fx:id="colPrixTotal" prefWidth="120.0" text="Total (Ar)" />
+                <TableColumn fx:id="colPrix" prefWidth="120.0" text="Total (Ar)" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

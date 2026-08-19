@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20.0" stylesheets="@../../styles/service.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stationservice.Controller.dossierService.ServiceController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- BANNIÈRE EN-TÊTE -->
+    <HBox alignment="CENTER_LEFT" styleClass="header-banner">
+        <padding>
+            <Insets top="20" right="25" bottom="20" left="25"/>
+        </padding>
+        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+            <Label text="GESTION ET TARIFICATION" styleClass="banner-subtitle"/>
+            <Label text="Gestion des Services" styleClass="banner-title"/>
+        </VBox>
+        <Button text="+ Nouveau Service" onAction="#handleNouveauService" styleClass="btn-new-service"/>
+    </HBox>
+
+    <!-- SECTION PRINCIPALE / TABLEAU -->
+    <VBox styleClass="card-pane" VBox.vgrow="ALWAYS" spacing="15.0">
+        <HBox alignment="CENTER_RIGHT">
+            <Label fx:id="lblTotalServices" text="Total : 0 service(s)" styleClass="badge-total"/>
+        </HBox>
+
+        <TableView fx:id="tableServices" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colNom" text="Nom du Service" prefWidth="350.0"/>
+                <TableColumn fx:id="colPrix" text="Prix (AR)" prefWidth="200.0"/>
+                <TableColumn fx:id="colActions" text="Actions" prefWidth="150.0"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+    </VBox>
+</VBox>

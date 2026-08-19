@@ -17,7 +17,11 @@
 				<Button fx:id="btnProduits" maxWidth="1.7976931348623157E308" onAction="#handleProduits" text="Produits &amp; Stock" />
 				<Button fx:id="btnAchat" maxWidth="1.7976931348623157E308" onAction="#handleAchat" text="Achat" />
 				<Button fx:id="btnEntree" maxWidth="1.7976931348623157E308" onAction="#handleEntrees" text="Entrée" />
-				<Button fx:id="btnEntretien" maxWidth="1.7976931348623157E308" onAction="#handleEntretiens" text="Entretien  et Services" />
+
+				<!-- Navigation distincte -->
+				<Button fx:id="btnEntretien" maxWidth="1.7976931348623157E308" onAction="#handleEntretiens" text="Entretiens" />
+				<Button fx:id="btnService" maxWidth="1.7976931348623157E308" onAction="#handleServices" text="Services &amp; Tarifs" />
+
 				<Button fx:id="btnClient" maxWidth="1.7976931348623157E308" onAction="#handleClient" text="Client" />
 			</children>
 		</VBox>

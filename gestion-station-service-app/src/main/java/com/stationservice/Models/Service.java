@@ -1,55 +1,33 @@
 package com.stationservice.Models;
 
 public class Service {
+	private String numServ;
+	private String nomService;
+	private int prixService;
 
-	private int idService;
-	private String nom;
-	private int prix;
+	public Service() {}
 
-	// Constructeur par défaut
-	public Service() {
+	public Service(String numServ, String nomService, int prixService) {
+		this.numServ = numServ;
+		this.nomService = nomService;
+		this.prixService = prixService;
 	}
 
-	// Constructeur principal (Nom + Prix)
-	public Service(String nom, int prix) {
-		this.nom = nom;
-		this.prix = prix;
-	}
+	// Identifiant (numServ ou id)
+	public String getNumServ() { return numServ; }
+	public void setNumServ(String numServ) { this.numServ = numServ; }
+	public String getId() { return numServ; }
+	public void setId(String id) { this.numServ = id; }
 
-	// Constructeur complet avec ID
-	public Service(int idService, String nom, int prix) {
-		this.idService = idService;
-		this.nom = nom;
-		this.prix = prix;
-	}
+	// Nom du service (nomService ou nom) -> Résout l'erreur getNom()
+	public String getNomService() { return nomService; }
+	public void setNomService(String nomService) { this.nomService = nomService; }
+	public String getNom() { return nomService; }
+	public void setNom(String nom) { this.nomService = nom; }
 
-	// Getters et Setters
-	public int getIdService() {
-		return idService;
-	}
-
-	public void setIdService(int idService) {
-		this.idService = idService;
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public int getPrix() {
-		return prix;
-	}
-
-	public void setPrix(int prix) {
-		this.prix = prix;
-	}
-
-	@Override
-	public String toString() {
-		return nom + " (" + prix + " AR)";
-	}
+	// Prix du service (prixService ou prix)
+	public int getPrixService() { return prixService; }
+	public void setPrixService(int prixService) { this.prixService = prixService; }
+	public int getPrix() { return prixService; }
+	public void setPrix(int prix) { this.prixService = prix; }
 }

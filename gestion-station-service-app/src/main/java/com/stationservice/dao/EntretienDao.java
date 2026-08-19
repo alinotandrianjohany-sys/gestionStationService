@@ -2,37 +2,29 @@ package com.stationservice.dao;
 
 import com.stationservice.Models.Entretien;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
-import org.jdbi.v3.sqlobject.customizer.Bind;
+import org.jdbi.v3.sqlobject.customizer.Bind; // Ajout important
 import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 import java.util.List;
 
+@RegisterBeanMapper(Entretien.class)
 public interface EntretienDao {
 
-    // Récupérer tous les entretiens triés du plus récent au plus ancien
-    @SqlQuery("SELECT num_entr AS numEntr, immatriculation_voiture AS immatriculationVoiture, " +
-            "nom_client AS nomClient, date_entretien AS dateEntretien, " +
-            "prix_entretien AS prixEntretien " +
-            "FROM entretien ORDER BY date_entretien DESC")
-    @RegisterBeanMapper(Entretien.class)
-    List<Entretien> getAllEntretiens();
+    @SqlQuery("SELECT num_entr AS numEntr, immatriculation_voiture AS immatriculationVoiture, nom_client AS nomClient, date_entretien AS dateEntretien, prix_entretien AS prixEntretien FROM entretien")
+    List<Entretien> findAll();
 
-    // Insérer un nouvel entretien
-    @SqlUpdate("INSERT INTO entretien (num_entr, immatriculation_voiture, nom_client, date_entretien, prix_entretien) " +
-            "VALUES (:numEntr, :immatriculationVoiture, :nomClient, :dateEntretien, :prixEntretien)")
-    void insertEntretien(@BindBean Entretien entretien);
+    @SqlUpdate("INSERT INTO entretien (num_entr, immatriculation_voiture, nom_client, date_entretien, prix_entretien) VALUES (:numEntr, :immatriculationVoiture, :nomClient, :dateEntretien, :prixEntretien)")
+    boolean insert(@BindBean Entretien entretien);
 
-    // Liaisons avec la table DETAILS
-    @SqlUpdate("INSERT INTO details (num_entr, num_serv, prix_applique) VALUES (:numEntr, :numServ, :prixApplique)")
-    void insertDetail(@Bind("numEntr") String numEntr, @Bind("numServ") String numServ, @Bind("prixApplique") int prixApplique);
+    @SqlUpdate("UPDATE entretien SET immatriculation_voiture = :immatriculationVoiture, nom_client = :nomClient, prix_entretien = :prixEntretien WHERE num_entr = :numEntr")
+    boolean update(@BindBean Entretien entretien);
 
-    // Chiffre d'affaires total
+    // Ajout de l'annotation @Bind("numEntr") pour corriger le crash lors de la suppression
+    @SqlUpdate("DELETE FROM entretien WHERE num_entr = :numEntr")
+    boolean delete(@Bind("numEntr") String numEntr);
+
     @SqlQuery("SELECT COALESCE(SUM(prix_entretien), 0) FROM entretien")
     int getChiffreAffairesEntretien();
-
-    // Nombre total d'entretiens
-    @SqlQuery("SELECT COUNT(*) FROM entretien")
-    int getNombreEntretiens();
 }
