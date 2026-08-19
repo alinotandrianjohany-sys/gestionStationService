@@ -15,7 +15,7 @@
         <VBox spacing="6.0" styleClass="form-group">
             <children>
                 <Label text="Numéro du Produit :" />
-                <TextField fx:id="txtNumProduit" promptText="Ex : ess-1" />
+                <ComboBox fx:id="comboProduit" prefWidth="360.0" promptText="Sélectionner un produit" />
             </children>
         </VBox>
         

@@ -3,14 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.stationservice.Controller.dossierAchat;
-//com.stationservice.Controller.dossierAchat.NouveauAchat
-
-
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 import com.stationservice.dao.ProduitDao;
@@ -19,35 +17,30 @@ import com.stationservice.Models.Achat;
 import com.stationservice.Models.Produit;
 import com.stationservice.config.DatabaseConfig;
 
-//gestion de fermeture
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import javafx.scene.control.ComboBox;
-
 import org.postgresql.util.PSQLException;
 import org.jdbi.v3.core.JdbiException;
 
 import java.util.Optional;
 
 /**
- *
+ * com.stationservice.Controller.dossierAchat.NouveauAchat
  * @author DELL
  */
 public class NouveauAchat {
-    @FXML private TextField txtNumProduit ;
+
+    @FXML private TextField txtNumProduit;
     @FXML private TextField txtNomClient;
     @FXML private TextField txtChoix;
     @FXML private Button BtnEnregistrer;
-    //@FXML private TextField txtMontantPayer;
-    @FXML private ComboBox ComboTypeAchat;
+    @FXML private ComboBox<Produit> comboProduit;
+    @FXML private ComboBox<String> ComboTypeAchat;
     @FXML private Label txtMessage;
 
     private ProduitDao produitDao = DatabaseConfig.getDao(ProduitDao.class);
     private AchatDao achatDao = DatabaseConfig.getDao(AchatDao.class);
 
-    public void initialize(){
-        ComboTypeAchat.getItems().addAll("Ariary");
+    public void initialize() {
+        ComboTypeAchat.getItems().addAll("Ariary", "Litre");
         ComboTypeAchat.setValue("Litre");
     }
 
@@ -96,7 +89,6 @@ public class NouveauAchat {
                 return;
             }
 
-            // Verification du Regex (si ce n'est PAS un nombre -> ERREUR)
             if (!val.matches(regexEntier)) {
                 afficherMessage("Veuillez saisir un montant valide en chiffres.");
                 return;
@@ -141,7 +133,6 @@ public class NouveauAchat {
                 return;
             }
 
-            // Utilisation du regex decimal
             if (!saisie.matches(regexDecimal)) {
                 afficherMessage("Veuillez saisir une quantité valide (ex: 2.5 ou 10)");
                 return;
@@ -158,12 +149,11 @@ public class NouveauAchat {
                 return;
             }
 
-            // Conversion sécurisée de Double en int sans passer par toString()
             double calcule = quantite * produit.getPrix_litre_prod();
             int montantAPayer = (int) Math.round(calcule);
 
             try {
-                Achat newAchat = new Achat("ka", produit.getNum_prod(), txtNomClient.getText().trim(), quantite, montantAPayer);
+                Achat newAchat = new Achat(genererNumEntree(), produit.getNum_prod(), txtNomClient.getText().trim(), quantite, montantAPayer);
                 estAjoute = achatDao.enregistrerVenteEtMettreAJourStock(newAchat);
 
                 if (estAjoute) {
@@ -182,23 +172,18 @@ public class NouveauAchat {
         }
     }
 
-    private void supprimerChamps(){
-        //riens
+    private void supprimerChamps() {
         txtNumProduit.setText("");
         txtNomClient.setText("");
         txtChoix.setText("");
     }
 
-    //private String creerNumProduit(){
-    //rien
-    //}
-
-    private void afficherMessage(String message){
+    private void afficherMessage(String message) {
         txtMessage.setText(message);
         txtMessage.setStyle("-fx-text-fill: red;");
     }
 
-    private void fermetureFenetre(){
+    private void fermetureFenetre() {
         Stage stage = (Stage) BtnEnregistrer.getScene().getWindow();
         stage.close();
     }
@@ -206,8 +191,6 @@ public class NouveauAchat {
     private String genererNumEntree() {
         int totalEntrees = achatDao.getNombreAchats();
         int nouveauNumero = totalEntrees + 1;
-
-        // Formatage exact : entree-1, entree-2, etc.
         return "achat-" + nouveauNumero;
     }
 }
