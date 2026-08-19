@@ -79,10 +79,9 @@ public class NouveauEntreeController {
     }
 
     private void genererNumEntree() {
-        int totalEntrees = _entreeDao.countEntrees();
-        int nouveauNumero = totalEntrees + 1;
-        
-        // Formatage exact : entree-1, entree-2, etc.
+        int maxNumero = _entreeDao.findMaxNumeroEntree();
+        int nouveauNumero = maxNumero + 1;
+
         txtNumEntree.setText("entree-" + nouveauNumero);
     }
 

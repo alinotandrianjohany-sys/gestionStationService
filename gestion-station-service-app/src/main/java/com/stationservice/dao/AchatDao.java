@@ -99,4 +99,71 @@ public interface AchatDao {
     @RegisterBeanMapper(RecetteMensuelle.class)
     List<RecetteMensuelle> obtenirRecettesCinqDerniersMois();
     
+    
+    
+    
+    //pARTIE MODIFICATION
+    
+    // 1. Ancien volume d'achat
+    @SqlQuery("SELECT nbr_litre FROM achat WHERE num_achat = :num_achat")
+    Optional<Double> findAncienNbrLitre(@Bind("num_achat") String num_achat);
+
+    // 2. Stock actuel du produit
+    @SqlQuery("SELECT stock FROM produit WHERE num_prod = :num_prod")
+    Optional<Double> findStockProduit(@Bind("num_prod") String num_prod);
+
+    // 3. Mise à jour des informations modifiables de l'achat
+    @SqlUpdate("""
+        UPDATE achat SET 
+            nom_client = :nom_client,
+            nbr_litre = :nbr_litre,
+            montant_paye_achat = :montant_paye_achat
+        WHERE num_achat = :num_achat
+        """)
+    boolean updateAchat(
+        @Bind("num_achat") String num_achat,
+        @Bind("nom_client") String nom_client,
+        @Bind("nbr_litre") double nbr_litre,
+        @Bind("montant_paye_achat") int montant_paye_achat
+    );
+
+    // 4. Mise à jour du stock dans produit
+    @SqlUpdate("UPDATE produit SET stock = :nouveauStock WHERE num_prod = :num_prod")
+    boolean updateStockProduit(@Bind("num_prod") String num_prod, @Bind("nouveauStock") double nouveauStock);
+
+    // 5. Transaction globale
+    @Transaction
+    default boolean modificationAchat(Achat achat) {
+        Optional<Double> stockProduitOpt = findStockProduit(achat.getNum_prod());
+        Optional<Double> ancienNbrLitreOpt = findAncienNbrLitre(achat.getNum_achat());
+
+        if (stockProduitOpt.isEmpty() || ancienNbrLitreOpt.isEmpty()) {
+            return false;
+        }
+
+        double stockActuelProduit = stockProduitOpt.get();
+        double ancienNbrLitre = ancienNbrLitreOpt.get();
+
+        // Calcul de la différence de volume
+        double difference = achat.getNbr_litre() - ancienNbrLitre;
+        double nouveauStockProduit = stockActuelProduit - difference;
+
+        // Empêche d'avoir un stock négatif
+        if (nouveauStockProduit < 0) {
+            return false;
+        }
+
+        // Exécution des mises à jour
+        boolean achatMaj = updateAchat(
+            achat.getNum_achat(),
+            achat.getNom_client(),
+            achat.getNbr_litre(),
+            achat.getMontant_paye_achat()
+        );
+
+        boolean produitMaj = updateStockProduit(achat.getNum_prod(), nouveauStockProduit);
+
+        return achatMaj && produitMaj;
+    }
+    
 }

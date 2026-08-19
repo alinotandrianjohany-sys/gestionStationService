@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 public class Entree {
 	private String num_entr;
 	private String num_prod;
-	private int stock_entree;
+	private double stock_entree;
 	private LocalDateTime date_entree;
 	
 	public Entree(String num_entr, String num_prod, int stock_entree ) {
@@ -35,11 +35,11 @@ public class Entree {
 		this.num_prod = num_prod;
 	}
 
-	public int getStock_entree() {
+	public double getStock_entree() {
 		return stock_entree;
 	}
 
-	public void setStock_entree(int stock_entree) {
+	public void setStock_entree(double stock_entree) {
 		this.stock_entree = stock_entree;
 	}
 
