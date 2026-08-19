@@ -65,12 +65,12 @@
     -fx-border-width: 1px;
 
     -fx-effect: dropshadow(
-        gaussian,
-        rgba(0, 0, 0, 0.08),
-        12,
-        0.15,
-        0,
-        3
+            gaussian,
+            rgba(0, 0, 0, 0.08),
+            12,
+            0.15,
+            0,
+            3
     );
 }
 
@@ -93,7 +93,7 @@
 }
 
 .pane_stat {
-    -fx-background-color: #FFF; 
+    -fx-background-color: #FFF;
 }
 
 .pane_stat_label {
@@ -103,9 +103,9 @@
 
 .hbox_affichage_donne {
     -fx-spacing: 15;
-    -fx-border-radius: 20; 
+    -fx-border-radius: 20;
 }
 
 .pane_affichage_donne {
-    -fx-background-color: #E1E3E4; 
+    -fx-background-color: #E1E3E4;
 }

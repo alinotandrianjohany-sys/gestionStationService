@@ -43,7 +43,8 @@ public class MainController {
 
     @FXML
     private void handleServices() {
-        loadView("/fxml/dossierService/entretien.fxml");
+        // Chemin corrigé vers le FXML dédié au CRUD des services
+        loadView("/fxml/dossierService/service.fxml");
     }
 
     @FXML
