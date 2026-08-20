@@ -10,6 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
 import com.stationservice.dao.ProduitDao;
 import com.stationservice.dao.AchatDao;
 import com.stationservice.Models.Achat;
@@ -57,126 +60,135 @@ public class NouveauAchat {
     }
 
     @FXML
-    private void Btn_effectuerNouveauAchat() {
-        String regexNom = "^[\\p{L}\\s\\-]+$";
+private void Btn_effectuerNouveauAchat() {
+    String regexNom = "^[\\p{L}\\s\\-]+$";
 
-        if (txtNomClient.getText().trim().isEmpty()) {
-            afficherMessage("Le nom du client est vide");
-            return;
-        }
-
-        if (!txtNomClient.getText().trim().matches(regexNom)) {
-            afficherMessage("Nom du client invalide");
-            return;
-        }
-
-        boolean estAjoute = false;
-
-        Produit produitSelectionne = comboProduit.getValue();
-        if (produitSelectionne == null) {
-            txtMessage.setText("Veuillez sélectionner un produit.");
-            return;
-        }
-
-        if (ComboTypeAchat.getValue() == null || ComboTypeAchat.getValue().toString().trim().isEmpty()) {
-            afficherMessage("Type Achat : Litre ou Montant.");
-            return;
-        }
-
-        String typeChoisie = ComboTypeAchat.getValue().toString().trim();
-        String regexEntier = "^[0-9]+$";
-        String regexDecimal = "^[0-9]+([.,][0-9]+)?$";
-
-        if (typeChoisie.equals("Ariary")) {
-            String val = txtChoix.getText().trim();
-
-            if (val.isEmpty()) {
-                afficherMessage("Le montant à payer est vide");
-                return;
-            }
-
-            if (!val.matches(regexEntier)) {
-                afficherMessage("Veuillez saisir un montant valide en chiffres.");
-                return;
-            }
-
-            int prix = Integer.parseInt(val);
-            if (prix <= 0) {
-                afficherMessage("Le prix doit être supérieur à 0");
-                return;
-            }
-
-            double quantite = (double) prix / produitSelectionne.getPrix_litre_prod();
-
-            if (quantite > produitSelectionne.getStock()) {
-                afficherMessage("Désolé, le stock est insuffisant...");
-                return;
-            }
-
-            try {
-                Achat newAchat = new Achat(genererNumEntree(), produitSelectionne.getNum_prod(), txtNomClient.getText().trim(), quantite, prix);
-                estAjoute = achatDao.enregistrerVenteEtMettreAJourStock(newAchat);
-
-                if (estAjoute) {
-                    txtMessage.setText("Merci de votre confiance, à bientôt !");
-                    txtMessage.setStyle("-fx-text-fill: green;");
-                    supprimerChamps();
-                    fermetureFenetre();
-                } else {
-                    afficherMessage("Erreur lors de l'ajout de l'achat");
-                }
-            } catch (JdbiException e) {
-                if (e.getCause() instanceof PSQLException psqlException && "23505".equals(psqlException.getSQLState())) {
-                    afficherMessage("Erreur de doublon : L'achat existe déjà !");
-                }
-            }
-
-        } else if (typeChoisie.equals("Litre")) {
-            String saisie = txtChoix.getText().trim();
-
-            if (saisie.isEmpty()) {
-                afficherMessage("La quantité est vide");
-                return;
-            }
-
-            if (!saisie.matches(regexDecimal)) {
-                afficherMessage("Veuillez saisir une quantité valide (ex: 2.5 ou 10)");
-                return;
-            }
-
-            double quantite = Double.parseDouble(saisie.replace(",", "."));
-            if (quantite <= 0) {
-                afficherMessage("La quantité doit être supérieure à 0");
-                return;
-            }
-
-            if (quantite > produitSelectionne.getStock()) {
-                afficherMessage("Le stock de produit est insuffisant");
-                return;
-            }
-
-            double calcule = quantite * produitSelectionne.getPrix_litre_prod();
-            int montantAPayer = (int) Math.round(calcule);
-
-            try {
-                Achat newAchat = new Achat(genererNumEntree(), produitSelectionne.getNum_prod(), txtNomClient.getText().trim(), quantite, montantAPayer);
-                estAjoute = achatDao.enregistrerVenteEtMettreAJourStock(newAchat);
-
-                if (estAjoute) {
-                    txtMessage.setText("Merci de votre confiance, à bientôt !");
-                    txtMessage.setStyle("-fx-text-fill: green;");
-                    supprimerChamps();
-                    fermetureFenetre();
-                } else {
-                    afficherMessage("Erreur lors de l'ajout de l'achat");
-                }
-            } catch (JdbiException e) {
-                if (e.getCause() instanceof PSQLException psqlException && "23505".equals(psqlException.getSQLState())) {
-                    afficherMessage("Erreur de doublon : L'achat existe déjà !");
-                }
-            }
-        }
+    if (txtNomClient.getText().trim().isEmpty()) {
+        afficherMessage("Le nom du client est vide");
+        return;
     }
+
+    if (!txtNomClient.getText().trim().matches(regexNom)) {
+        afficherMessage("Nom du client invalide");
+        return;
+    }
+
+    Produit produitSelectionne = comboProduit.getValue();
+    if (produitSelectionne == null) {
+        txtMessage.setText("Veuillez sélectionner un produit.");
+        return;
+    }
+
+    if (ComboTypeAchat.getValue() == null || ComboTypeAchat.getValue().toString().trim().isEmpty()) {
+        afficherMessage("Type Achat : Litre ou Montant.");
+        return;
+    }
+
+    String typeChoisie = ComboTypeAchat.getValue().toString().trim();
+    String regexEntier = "^[0-9]+$";
+    String regexDecimal = "^[0-9]+([.,][0-9]+)?$";
+
+    double quantite = 0;
+    int montantAPayer = 0;
+    double prixUnitaire = produitSelectionne.getPrix_litre_prod();
+
+    // 1. Calculs selon le mode sélectionné
+    if (typeChoisie.equals("Ariary")) {
+        String val = txtChoix.getText().trim();
+        if (val.isEmpty()) {
+            afficherMessage("Le montant à payer est vide");
+            return;
+        }
+        if (!val.matches(regexEntier)) {
+            afficherMessage("Veuillez saisir un montant valide en chiffres.");
+            return;
+        }
+
+        montantAPayer = Integer.parseInt(val);
+        if (montantAPayer <= 0) {
+            afficherMessage("Le prix doit être supérieur à 0");
+            return;
+        }
+
+        quantite = (double) montantAPayer / prixUnitaire;
+        if (quantite > produitSelectionne.getStock()) {
+            afficherMessage("Désolé, le stock est insuffisant...");
+            return;
+        }
+
+    } else if (typeChoisie.equals("Litre")) {
+        String saisie = txtChoix.getText().trim();
+        if (saisie.isEmpty()) {
+            afficherMessage("La quantité est vide");
+            return;
+        }
+        if (!saisie.matches(regexDecimal)) {
+            afficherMessage("Veuillez saisir une quantité valide (ex: 2.5 ou 10)");
+            return;
+        }
+
+        quantite = Double.parseDouble(saisie.replace(",", "."));
+        if (quantite <= 0) {
+            afficherMessage("La quantité doit être supérieure à 0");
+            return;
+        }
+        if (quantite > produitSelectionne.getStock()) {
+            afficherMessage("Le stock de produit est insuffisant");
+            return;
+        }
+
+        double calcule = quantite * prixUnitaire;
+        montantAPayer = (int) Math.round(calcule);
+    }
+
+    // 2. Pop-up de confirmation avec le détail complet
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Confirmation de la vente");
+    alert.setHeaderText("Voulez-vous vraiment enregistrer cet achat ?");
+    alert.setContentText(
+        "Client : " + txtNomClient.getText().trim() + "\n" +
+        "Produit : " + produitSelectionne.getDesign() + "\n" +
+        "Quantité : " + String.format("%.2f", quantite) + " Litres\n" +
+        "Prix unitaire : " + prixUnitaire + " Ar/Litre\n" +
+        "Coût total : " + montantAPayer + " Ariary"
+    );
+
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.isEmpty() || result.get() != ButtonType.OK) {
+        return; // Annulation de l'enregistrement
+    }
+
+    // 3. Enregistrement en base de données
+    // 3. Enregistrement en base de données
+    try {
+        Achat newAchat = new Achat(genererNumEntree(), produitSelectionne.getNum_prod(), txtNomClient.getText().trim(), quantite, montantAPayer);
+        boolean estAjoute = achatDao.enregistrerVenteEtMettreAJourStock(newAchat);
+
+        if (estAjoute) {
+            // Afficher un pop-up d'information de succès avant de fermer
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Succès");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Achat enregistré avec succès ! Merci de votre confiance.");
+            successAlert.showAndWait();
+
+            supprimerChamps();
+            fermetureFenetre();
+        } else {
+            afficherMessage("Échec de l'enregistrement en base de données.");
+        }
+    } catch (JdbiException e) {
+        e.printStackTrace(); // Permet de voir l'erreur exacte dans la console NetBeans
+        if (e.getCause() instanceof PSQLException psqlException && "23505".equals(psqlException.getSQLState())) {
+            afficherMessage("Erreur de doublon : L'achat existe déjà !");
+        } else {
+            afficherMessage("Erreur BDD : " + e.getMessage());
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        afficherMessage("Erreur inattendue : " + e.getMessage());
+    }
+}
 
     private void supprimerChamps() {
         if (txtNumProduit != null) txtNumProduit.setText("");
@@ -195,8 +207,8 @@ public class NouveauAchat {
     }
 
     private String genererNumEntree() {
-        int totalEntrees = achatDao.getNombreAchats();
-        int nouveauNumero = totalEntrees + 2;
+        int dernierNumero = achatDao.getLastAchatNumber();
+        int nouveauNumero = dernierNumero + 1;
 
         return "achat-" + nouveauNumero;
     }

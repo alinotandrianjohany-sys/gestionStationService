@@ -1,35 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="580.0" prefWidth="750.0" styleClass="root-container" stylesheets="@../../styles/achat/achat.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stationservice.Controller.dossierAchat.AchatController">
    <children>
       <VBox spacing="16.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="16.0">
          <children>
-            
-            <!-- En-tête Global -->
-            <!--<Pane fx:id="pane_en_tete" minHeight="40.0" styleClass="pane_en_tete" />-->
-
-            <!-- Contenu Principal en 2 colonnes adaptatives -->
             <HBox spacing="16.0" VBox.vgrow="ALWAYS">
                <children>
-                  
-                  <!-- SECTION GAUCHE : Bannière + Table des Achats -->
                   <VBox spacing="16.0" HBox.hgrow="ALWAYS">
                      <children>
                         
-                        <!-- Bannière / En-tête Gauche avec gradient vert -->
-                        <!-- Bannière d'en-tête (25% de la hauteur) -->
+                        <!-- Bannière d'en-tête -->
                         <VBox fx:id="pane_gauche_entete" styleClass="pane_gauche_entete">
                            <children>
                               <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
@@ -46,42 +34,32 @@
                            </children>
                         </VBox>
 
-                        <!-- Liste des achats effectués -->
+                        <!-- Liste des achats -->
                         <VBox spacing="12.0" styleClass="card-container" VBox.vgrow="ALWAYS">
                            <children>
                               <Label styleClass="label-section" text="Achats effectués" />
+                              
                               <TableView fx:id="tableAchats" VBox.vgrow="ALWAYS">
-                                <columnResizePolicy>
-                              <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY" />
-                              </columnResizePolicy>
-                                <columns>
-                                    <TableColumn fx:id="num_achat" prefWidth="60.0" text="ID" />
-                                    <TableColumn fx:id="num_prod" prefWidth="160.0" text="Produit" />
-                                    <TableColumn fx:id="nom_client" prefWidth="160.0" text="Client"/>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                                 <columns>
+                                    <TableColumn fx:id="num_achat" prefWidth="80.0" text="ID" />
+                                    <TableColumn fx:id="num_prod" prefWidth="120.0" text="Produit" />
+                                    <TableColumn fx:id="nom_client" prefWidth="150.0" text="Client" />
                                     <TableColumn fx:id="nbr_litre" prefWidth="80.0" text="Litres" />
-                                    <TableColumn fx:id="montant_paye_achat" prefWidth="90.0" text="Total" />
-                                    <TableColumn fx:id="colAction" prefWidth="90.0" text="Actions" />
+                                    <TableColumn fx:id="montant_paye_achat" prefWidth="100.0" text="Total" />
+                                    <TableColumn fx:id="colAction" prefWidth="100.0" text="Actions" />
                                  </columns>
                               </TableView>
+                              
                            </children>
                         </VBox>
 
                      </children>
                   </VBox>
-
-                  <!-- SECTION DROITE : Liste Produits -->
-                  <!--<VBox prefWidth="220.0" spacing="12.0" styleClass="card-container">
-                     <children>
-                        <Label styleClass="label-section" text="Listes des produits" />
-                        <ScrollPane fitToWidth="true" styleClass="scroll-pane-custom" VBox.vgrow="ALWAYS">-->
-                           <!-- Insérez ici le conteneur de votre liste de produits -->
-                      <!--    </ScrollPane>
-                     </children>
-                  </VBox>-->
-
                </children>
             </HBox>
-
          </children>
       </VBox>
    </children>

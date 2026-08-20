@@ -166,5 +166,8 @@ public interface AchatDao {
         return achatMaj && produitMaj;
     }
     
+    @SqlQuery("SELECT COALESCE(MAX(CAST(NULLIF(regexp_replace(num_achat, '\\D', '', 'g'), '') AS INTEGER)), 0) FROM achat")
+    int getLastAchatNumber();
+    
 }
 

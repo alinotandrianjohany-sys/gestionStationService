@@ -124,15 +124,15 @@
     -fx-alignment: CENTER-LEFT;
 }
 
-.table-row-cell {
-    -fx-cell-size: 38px;
-    -fx-border-color: transparent transparent #f1f5f9 transparent;
+.table-row-cell:hover {
+    -fx-background-color: #F0FDF4;
 }
 
 .table-row-cell:selected {
-    -fx-background-color: #e0e7ff;
+    -fx-background-color: #DCFCE7;
+    -fx-text-fill: #112b1c;
 }
 
 .table-row-cell:selected .text {
-    -fx-fill: #1e1b4b;
+    -fx-fill: #112b1c;
 }

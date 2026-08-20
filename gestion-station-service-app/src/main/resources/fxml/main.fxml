@@ -14,44 +14,48 @@
 		<VBox prefWidth="220.0" spacing="8.0" styleClass="sidebar">
 			<children>
 				<Label styleClass="brand-title" text="Station Essence" />
-				
+
+
 				<Button fx:id="btnDashboard" maxWidth="1.7976931348623157E308" onAction="#handleDashboard" styleClass="nav-button" text="Tableau de Bord">
 					<graphic>
 						<Region styleClass="icon, icon-dashboard" />
 					</graphic>
 				</Button>
-				
+                                
 				<Button fx:id="btnProduits" maxWidth="1.7976931348623157E308" onAction="#handleProduits" styleClass="nav-button" text="Produits">
 					<graphic>
 						<Region styleClass="icon, icon-produits" />
 					</graphic>
 				</Button>
-				
-				<Button fx:id="btnEntretien" maxWidth="1.7976931348623157E308" onAction="#handleAchat" styleClass="nav-button" text="Achat">
+
+				<Button fx:id="btnStock" maxWidth="1.7976931348623157E308" onAction="#handleAchat" styleClass="nav-button" text="Achat">
 					<graphic>
 						<Region styleClass="icon, icon-achat" />
 					</graphic>
 				</Button>
-				
+
+
 				<Button fx:id="btnEntree" maxWidth="1.7976931348623157E308" onAction="#handleEntrees" styleClass="nav-button" text="Entrée">
 					<graphic>
 						<Region styleClass="icon, icon-entree" />
 					</graphic>
 				</Button>
-                                
-                                <Button fx:id="btnClient" maxWidth="1.7976931348623157E308" onAction="#handleClient" styleClass="nav-button" text="Client">
+
+				<Button fx:id="btnClient" maxWidth="1.7976931348623157E308" onAction="#handleClient" styleClass="nav-button" text="Client">
 					<graphic>
 						<Region styleClass="icon, icon-client" />
 					</graphic>
 				</Button>
-                                
-                                <Button fx:id="btnEntretien" maxWidth="1.7976931348623157E308" onAction="#handleEntretiens" styleClass="nav-button" text="Entretien">
+
+				<Button fx:id="btnEntretien" maxWidth="1.7976931348623157E308" onAction="#handleEntretiens" styleClass="nav-button" text="Entretien">
 					<graphic>
 						<Region styleClass="icon, icon-entretien" />
 					</graphic>
 				</Button>
-                                
-                                <Button fx:id="btnService" maxWidth="1.7976931348623157E308"  styleClass="nav-button" text="Service">
+
+
+				<!-- Bouton Service corrigé avec onAction et l'icône appropriée -->
+				<Button fx:id="btnService" maxWidth="1.7976931348623157E308" onAction="#handleServices" styleClass="nav-button" text="Services &amp; Tarifs">
 					<graphic>
 						<Region styleClass="icon, icon-service" />
 					</graphic>

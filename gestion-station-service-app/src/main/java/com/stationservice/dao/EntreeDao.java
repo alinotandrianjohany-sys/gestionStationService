@@ -151,7 +151,7 @@ public interface EntreeDao {
     // Enregistrer une nouvelle entrée de stock
     @SqlUpdate("""
                INSERT INTO entree (num_entr, num_prod, stock_entree, date_entree)
-               VALUES (:numEntree, :numProd, :stockEntree, CURRENT_DATE)
+               VALUES (:numEntree, :numProd, :stockEntree, CURRENT_TIMESTAMP)
                """)
     boolean insertEntree(@Bind("numEntree") String numEntree, 
                          @Bind("numProd") String numProd, 
